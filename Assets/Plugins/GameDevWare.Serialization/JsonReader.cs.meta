@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: bba26f939c8285043ac1095b051ea153
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 59918
+  packageName: Json & MessagePack Serialization
+  packageVersion: 2.4.3
+  assetPath: Assets/Plugins/GameDevWare.Serialization/JsonReader.cs
+  uploadId: 353417

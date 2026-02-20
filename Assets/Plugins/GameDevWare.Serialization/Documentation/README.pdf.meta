@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 34efbab6f36841c48b358442f4136f95
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 59918
+  packageName: Json & MessagePack Serialization
+  packageVersion: 2.4.3
+  assetPath: Assets/Plugins/GameDevWare.Serialization/Documentation/README.pdf
+  uploadId: 353417

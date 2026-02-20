@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a5a0f9f934bc3cc4dba2d8661d3a5ed8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 59918
+  packageName: Json & MessagePack Serialization
+  packageVersion: 2.4.3
+  assetPath: Assets/Plugins/GameDevWare.Serialization/Serializers/Matrix4x4Serializer.cs
+  uploadId: 353417

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6a41a9524d15b6e4b8134b0df18e98e1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 59918
+  packageName: Json & MessagePack Serialization
+  packageVersion: 2.4.3
+  assetPath: Assets/Plugins/GameDevWare.Serialization/MessagePack/MsgPackWriter.cs
+  uploadId: 353417

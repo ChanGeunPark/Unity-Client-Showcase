@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 014c4ffedd47c8647b80f476d5ec0d17
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 59918
+  packageName: Json & MessagePack Serialization
+  packageVersion: 2.4.3
+  assetPath: Assets/Plugins/GameDevWare.Serialization/MessagePack/UnknownMsgPackExtentionTypeException.cs
+  uploadId: 353417
