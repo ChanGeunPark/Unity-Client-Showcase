@@ -19,10 +19,10 @@ public class GameDataManager : MonoBehaviour
     /// <summary>
     /// 인벤토리 테이블. Store에 보관되며 여기서 노출합니다.
     /// </summary>
-    public InventoryTable Inventory
+    public InventoryTable InventoryTable
     {
-        get => _store.Inventory;
-        set => _store.Inventory = value;
+        get => _store.InventoryTable;
+        set => _store.InventoryTable = value;
     }
 
     /// <summary>
@@ -75,7 +75,7 @@ public class GameDataManager : MonoBehaviour
 
     private void Start()
     {
-        _store.Inventory = InventoryTable.CreateDefault();
+        _store.InventoryTable = InventoryTable.CreateDefault();
     }
 
     #endregion

@@ -28,7 +28,7 @@ public class ResourceManager : MonoBehaviour
     public static ResourceManager Instance { get; private set; }
 
     // 네이밍 규칙 상수
-    private const string PREFIX_CLIENT_DATA = "ClientData_";
+    private const string PREFIX_SO_DATA = "SODATA_";
     private const string PRELOAD_LABEL = "PreLoad";
 
     // 재시도 설정
@@ -208,37 +208,37 @@ public class ResourceManager : MonoBehaviour
 
     #endregion
 
-    #region ClientData & QuestData Loading
+    #region SOData & QuestData Loading
 
     /// <summary>
-    /// ClientData 로드 (네이밍 규칙 자동 적용)
+    /// SOData 로드 (네이밍 규칙 자동 적용)
     /// </summary>
-    public T LoadClientData<T>(string mainKey, string subKey = null) where T : ScriptableObject
+    public T LoadSOData<T>(string mainKey, string subKey = null) where T : ScriptableObject
     {
-        string loadKey = BuildClientDataKey(mainKey, subKey);
-        T clientData = Load<T>(loadKey);
+        string loadKey = BuildSODataKey(mainKey, subKey);
+        T soData = Load<T>(loadKey);
 
-        if (clientData) return clientData;
+        if (soData) return soData;
 
-        Debug.LogError($"[ResourceManager] Failed to Load ClientData<{typeof(T)}> : {mainKey}");
+        Debug.LogError($"[ResourceManager] Failed to Load SOData<{typeof(T)}> : {mainKey}");
         return null;
     }
 
     /// <summary>
-    /// ClientData 키 생성 헬퍼
+    /// SOData 키 생성 헬퍼
     /// </summary>
-    private string BuildClientDataKey(string mainKey, string subKey)
+    private string BuildSODataKey(string mainKey, string subKey)
     {
         return string.IsNullOrEmpty(subKey)
-            ? $"{PREFIX_CLIENT_DATA}{mainKey}"
-            : $"{PREFIX_CLIENT_DATA}{subKey}_{mainKey}";
+            ? $"{PREFIX_SO_DATA}{mainKey}"
+            : $"{PREFIX_SO_DATA}{subKey}_{mainKey}";
     }
 
 
     /// <summary>
-    /// 여러 ClientData를 병렬로 로드 (Thread-Safe, 캐시 우선)
+    /// 여러 SOData를 병렬로 로드 (Thread-Safe, 캐시 우선)
     /// </summary>
-    public async UniTask<Dictionary<(string mainKey, string subKey), T>> BulkLoadClientDataAsync<T>(
+    public async UniTask<Dictionary<(string mainKey, string subKey), T>> BulkLoadSODataAsync<T>(
         HashSet<(string mainKey, string subKey)> keys,
         CancellationToken cancellationToken = default
     ) where T : ScriptableObject
@@ -251,7 +251,7 @@ public class ResourceManager : MonoBehaviour
         var toLoad = new List<(string loadKey, (string mainKey, string subKey) keyTuple)>();
         foreach (var keyTuple in keys)
         {
-            string loadKey = BuildClientDataKey(keyTuple.mainKey, keyTuple.subKey);
+            string loadKey = BuildSODataKey(keyTuple.mainKey, keyTuple.subKey);
 
             if (_resources.TryGetValue(loadKey, out var cached) && cached is T cachedAsset)
             {
@@ -281,7 +281,7 @@ public class ResourceManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogError($"[ResourceManager] Failed to load ClientData<{typeof(T)}> : {item.loadKey}");
+                        Debug.LogError($"[ResourceManager] Failed to load SOData<{typeof(T)}> : {item.loadKey}");
                         if (handle.IsValid())
                         {
                             Addressables.Release(handle);

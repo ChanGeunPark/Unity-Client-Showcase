@@ -5,6 +5,6 @@ using System.Collections.Generic;
 /// </summary>
 public class GameDataStore
 {
-    public InventoryTable Inventory { get; set; }
+    public InventoryTable InventoryTable { get; set; }
 
 }

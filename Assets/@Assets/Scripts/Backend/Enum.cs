@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public enum InventoryItemType
+public enum ItemType
 {
   None = 0,
   Food,
-  Material,
-  Etc
+  Gold,
+  Energy,
 }
 
 public enum SaveLoadTable
