@@ -26,12 +26,12 @@ public class GameDataManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 데이터 보관소 참조 (테스트/확장용).
+    /// 데이터 보관소 참조.
     /// </summary>
     public GameDataStore Store => _store;
 
     /// <summary>
-    /// 이벤트 버스 참조 (테스트/직접 구독용).
+    /// 이벤트 버스 참조.
     /// </summary>
     public GameDataEventBus EventBus => _eventBus;
 
