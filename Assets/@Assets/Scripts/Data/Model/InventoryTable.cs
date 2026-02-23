@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using MessagePack;
 
 [Serializable]
+[MessagePackObject(keyAsPropertyName: true)]
 public class InventoryTable
 {
     public List<InventoryItem> MaterialItems = new List<InventoryItem>();
