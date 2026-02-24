@@ -28,7 +28,7 @@ public class ResourceManager : MonoBehaviour
     public static ResourceManager Instance { get; private set; }
 
     // 네이밍 규칙 상수
-    private const string PREFIX_SO_DATA = "SODATA_";
+    private const string PREFIX_SO_DATA = "SOData_";
     private const string PRELOAD_LABEL = "PreLoad";
 
     // 재시도 설정
@@ -215,12 +215,12 @@ public class ResourceManager : MonoBehaviour
     /// </summary>
     public T LoadSOData<T>(string mainKey, string subKey = null) where T : ScriptableObject
     {
-        string loadKey = BuildSODataKey(mainKey, subKey);
+        string loadKey = BuildSODataKey($"{mainKey}", subKey);
         T soData = Load<T>(loadKey);
 
         if (soData) return soData;
 
-        Debug.LogError($"[ResourceManager] Failed to Load SOData<{typeof(T)}> : {mainKey}");
+        Debug.LogError($"[ResourceManager] Failed to Load SOData<{typeof(T)}> : {loadKey}");
         return null;
     }
 

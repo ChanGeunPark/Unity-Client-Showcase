@@ -17,23 +17,13 @@ public class InventoryItemHolder : BaseUI
     {
         BindImage(typeof(Images));
         BindText(typeof(Texts));
-    }
 
-    private void Start()
-    {
-        Initialize();
-    }
-
-    private void Initialize()
-    {
-        gameObject.GetComponent<ImageController>().SetImageState(ImageController.ImageState.Disabled);
         HideText(Texts.ItemCount);
         HideImage(Images.ItemIcon);
     }
 
     public void SetItem(InventoryItem item)
     {
-        gameObject.GetComponent<ImageController>().SetImageState(ImageController.ImageState.Normal);
         ShowText(Texts.ItemCount);
         ShowImage(Images.ItemIcon);
 

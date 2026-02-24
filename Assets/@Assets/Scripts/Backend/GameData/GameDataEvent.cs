@@ -48,5 +48,8 @@ public enum GameDataEventKind
     UserInfoLoaded,
     InventoryLoaded,
     InventoryChanged,
+    MaterialItemsChanged,
+    EtcItemsChanged,
 
+    CurrencyTableChanged,
 }

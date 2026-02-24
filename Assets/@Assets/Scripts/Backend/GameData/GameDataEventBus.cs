@@ -13,6 +13,7 @@ public class GameDataEventBus
     /// </summary>
     public event Action<IReadOnlyList<GameDataEvent>> OnEvents;
     public event Action<GameDataEvent> OnInventoryChanged;
+    public event Action<GameDataEvent> OnCurrencyTableChanged;
 
     /// <summary>
     /// 저장 요청. 구독처(Repository 등)에서 저장을 수행합니다.
@@ -99,6 +100,10 @@ public class GameDataEventBus
             {
                 OnInventoryChanged?.Invoke(evt);
             }
+            if (IsCurrencyTableEvent(evt.Kind))
+            {
+                OnCurrencyTableChanged?.Invoke(evt);
+            }
         }
 
         OnEvents?.Invoke(_queuedEvents);
@@ -108,6 +113,13 @@ public class GameDataEventBus
     private static bool IsInventoryEvent(GameDataEventKind kind)
     {
         return kind == GameDataEventKind.InventoryLoaded
-            || kind == GameDataEventKind.InventoryChanged;
+            || kind == GameDataEventKind.InventoryChanged
+            || kind == GameDataEventKind.MaterialItemsChanged
+            || kind == GameDataEventKind.EtcItemsChanged;
+    }
+
+    private static bool IsCurrencyTableEvent(GameDataEventKind kind)
+    {
+        return kind == GameDataEventKind.CurrencyTableChanged;
     }
 }

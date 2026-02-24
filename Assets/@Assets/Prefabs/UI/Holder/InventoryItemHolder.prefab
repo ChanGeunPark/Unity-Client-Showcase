@@ -148,7 +148,6 @@ GameObject:
   - component: {fileID: 3798510368512755150}
   - component: {fileID: 1340148412755379805}
   - component: {fileID: 3573547185068485433}
-  - component: {fileID: 8185661735451029527}
   m_Layer: 5
   m_Name: InventoryItemHolder
   m_TagString: Untagged
@@ -227,32 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8673abf9b841431d850474df4289b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8185661735451029527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5272006863756896994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46693b4292133464eb6d99b7a9b6324b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCustom: 0
-  customSprites: []
-  normalSprite: {fileID: 21300000, guid: 35d7e6588f1f34db1b9a5e62f4efdf77, type: 3}
-  activeSprite: {fileID: 0}
-  disabledSprite: {fileID: 21300000, guid: dd77367546bf4433dbbb2317a935df54, type: 3}
-  selectedSprite: {fileID: 0}
-  normalLocaleSprites: []
-  activeLocaleSprites: []
-  disabledLocaleSprites: []
-  selectedLocaleSprites: []
-  currentState: 0
-  currentCustomKey: 
-  localeType: 0
-  isLocaleDependent: 0
 --- !u!1 &5561528191817894972
 GameObject:
   m_ObjectHideFlags: 0

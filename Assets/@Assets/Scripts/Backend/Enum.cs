@@ -3,12 +3,20 @@ using UnityEngine;
 public enum ItemType
 {
   None = 0,
-  Food,
+  Material,
   Gold,
   Energy,
 }
 
-public enum SaveLoadTable
+public enum GameDataObject
 {
   InventoryTable,
+  CurrencyTable
+}
+
+public enum CurrencyType
+{
+  Gold,
+  Diamond,
+  Energy,
 }

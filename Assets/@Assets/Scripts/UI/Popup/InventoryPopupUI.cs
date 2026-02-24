@@ -41,14 +41,14 @@ public class InventoryPopupUI : BasePopupUI
     {
         Util.DestroyChilds(GetObject(Objects.InventoryItemList));
 
-        foreach (var item in GameDataManager.Instance.InventoryTable.MaterialItems)
+        foreach (var item in GameDataManager.Instance.Store.InventoryTable.MaterialItems)
         {
             var inventoryItemHolder = UIManager.Instance.MakeItemHolder<InventoryItemHolder>(GetObject(Objects.InventoryItemList).transform);
             inventoryItemHolder.SetItem(item);
         }
 
-        int materialItemCount = GameDataManager.Instance.InventoryTable.MaterialItems.Count;
-        int maxMaterialItemCount = GameDataManager.Instance.InventoryTable.MaxMaterialItemCount;
+        int materialItemCount = GameDataManager.Instance.Store.InventoryTable.MaterialItems.Count;
+        int maxMaterialItemCount = GameDataManager.Instance.Store.InventoryTable.MaxMaterialItemCount;
 
 
         for (int i = 0; i < maxMaterialItemCount - materialItemCount; i++)

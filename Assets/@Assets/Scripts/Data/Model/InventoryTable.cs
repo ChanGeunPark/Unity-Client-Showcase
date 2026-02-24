@@ -24,6 +24,7 @@ public class InventoryTable
 
 
 [Serializable]
+[MessagePackObject(keyAsPropertyName: true)]
 public class InventoryItem
 {
     public string ItemId;

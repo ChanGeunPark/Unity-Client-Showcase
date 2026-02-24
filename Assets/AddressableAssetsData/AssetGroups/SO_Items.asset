@@ -26,7 +26,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 80ab9151a0d9c40cfa1daedb5f4ee7ff
-    m_Address: SOData_Bolt
+    m_Address: SOData_bolt
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

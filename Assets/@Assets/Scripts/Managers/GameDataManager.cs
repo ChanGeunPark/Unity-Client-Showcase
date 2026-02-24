@@ -15,16 +15,6 @@ public class GameDataManager : MonoBehaviour
     private readonly GameDataEventBus _eventBus = new GameDataEventBus();
 
     #region Data (Store 위임)
-
-    /// <summary>
-    /// 인벤토리 테이블. Store에 보관되며 여기서 노출합니다.
-    /// </summary>
-    public InventoryTable InventoryTable
-    {
-        get => _store.InventoryTable;
-        set => _store.InventoryTable = value;
-    }
-
     /// <summary>
     /// 데이터 보관소 참조.
     /// </summary>
@@ -75,7 +65,8 @@ public class GameDataManager : MonoBehaviour
 
     private void Start()
     {
-        _store.InventoryTable = InventoryTable.CreateDefault();
+        // var response = BackendManager.Instance.GetInventoryTable();
+        // _store.InventoryTable = response.IsSuccess ? response.Data : InventoryTable.CreateDefault();
     }
 
     #endregion
