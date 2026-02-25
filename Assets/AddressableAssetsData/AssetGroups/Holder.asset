@@ -18,7 +18,8 @@ MonoBehaviour:
   - m_GUID: 47ef8f28c618e4d49978dfc4334f6b4a
     m_Address: InventoryItemHolder
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - MainAsset
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a99d21fee4c374034941ca178132ef9c, type: 2}

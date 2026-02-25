@@ -20,3 +20,14 @@ public enum CurrencyType
   Diamond,
   Energy,
 }
+
+
+// 캐릭터 등급
+public enum CharacterGrade
+{
+  None,
+  Common,
+  Rare,
+  Epic,
+  Legendary,
+}

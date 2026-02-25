@@ -1,0 +1,383 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Sprites_Character
+  m_EditorClassIdentifier: 
+  m_GroupName: Sprites_Character
+  m_GUID: 233c2c75d2ba042d49aec22d0cc18602
+  m_SerializeEntries:
+  - m_GUID: 02bdb0933d0c5417d8e4411e380b3d63
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_yeonghee.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 08c78f4932797422eb70805a165a0ce4
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_creamer.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c48396a5ce634f5d99f4377cca81ac4
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_lucia.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 118fdc97d26324565ab06f918b511da5
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_hailey.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23e2c0a45aaf44e84b583c6afcfe5029
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_ruru.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a2eb887af2b04e3eaf731b29bbf068f
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_cus.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2b580ce2926ba4f2f9bc2514d888aa3d
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_huchu.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f50c57bc22e04f26b59ad11d8c68d01
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_loui.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 328ee772e1aac4895a600dcd855ebb99
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_phinx.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3598018b439ac4c45aa4624a999243ef
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_meg.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39be4facb8d4446b98e2a14f7839b338
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_calla.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e7f4a7397bc744e8aaff0383ceb6fb9
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_yomi.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46d96885539fe45b9908a2571d482ae1
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_lucia.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4bb0b76215dfe4f3c9dae9f2f7b28f10
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_lime.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d0178125a40a4d1bb298061675ff6fc
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_hailey.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57d732cf24b73456fb951073ace9ba62
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_benjamin.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a4cfbc803fc14f18950b6bb1618004a
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_calla.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 646ec28dbf83b44cb81add565af1ea44
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_ivan.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6701f97d134ac450c880f8ece4976d91
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_vega.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a743a168a1f948e48b0f9a088348a77
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_gosaengi.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6e9c2923304d945bfb43bc5da7682cce
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_nezumi.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f73e0f3830d4409fa8ba89f8b8ce851
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_clue.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 798a985513e414b1d822d8933815c978
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_boksoon.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a8fb466f27f9453fb153d7ea515865a
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_yeonghee.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7bdb2ca904767412f95e08bed25d9796
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_teddy.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7de2154c2ed6f40ed9e867be9a7c432e
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_treamer.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 82c1577e1e4c64439a920984f3c09d0c
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_ivan.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87f826c102c224b2cbfa5746c45fa9b9
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_kay.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89403ffe754894990b1df9ee991164be
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_phinx.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8cc8b76a462294c4a9abc3915f04ea43
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_benjamin.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d0df2b44c49f4c0f866154385f037d8
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_moses.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ee76132a4ec242c2ad5d3374d015271
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_schrodinger.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f27d4081bf4d4b019833eca3cebef83
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_noah.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 91b1a02ad0d784c17a6e77ff8320a0c8
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_freesia.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93391e0ff668440adb16d72f0bb3cd43
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_isus.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98c6b35b1458b49ddac62e1dbe1866e6
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_meg.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9bf698a739e3349d1a9a257d2b2dd68d
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_treamer.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c01c2879159a4da3a0f306e0ad9dc0e
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_alosha.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9ed8caef3e7d3433096620890e268ca2
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_isus.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f42eae2fd22f45fab09e58edbc16b60
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_creamer.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9fb7ca70e9c0b406ea9fd9ac0d617841
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_brownie.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1c28f39d2a474841a69402a53363fd9
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_huchu.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a354d45b95bca4d6fa7d76b2f8637c9a
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_lucius.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ab7691bcbdf8b4b6fbb4860c5059fdb8
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_lime.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae035fd36c5b4401ba44a9abcdde228e
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_kay.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aed9ef374ffb54cccb2ff2088540f343
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_ruru.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b0cb99b1cb50a44a68b44607e6682182
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_hoosigi.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2fe1e2cfb20e4430a18227a9d804345
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_nabi.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6ae75d05f05b4a5583fb2241ca9c2b0
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_alosha.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba06007e6675340a4bb7b4eeb3cc0b05
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_nate.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c926fe9298c284a4eb8126438361c5e6
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_nate.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d4662537ef36f46aca799c52f3de4728
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_freesia.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d55992da42c6543ae869cd5b010c7ad8
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_vega.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d76c56641d16b4c009bada810c9c86cc
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_atom.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8c3cad7bae53444ebdda9ec327871d3
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_lunael.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da5db553bd4fe4ba6b76556c6f6aea49
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_loui.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc0ff0b367aa34d8d9c1898c2c52212f
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatProfiles/character_illust_teddy.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc771c45f516246fb941cf14f8af359e
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_bentu.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de3d2036d6ac34ddb885640124035f83
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_lucius.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f318d0af295cd4fb6b473a893513f797
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Cats/CatFaceImages/profile_head_hoosigi.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainAsset
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a99d21fee4c374034941ca178132ef9c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 67b8c873763df49a89d6eb4a094f11dc, type: 2}
+    - {fileID: 11400000, guid: 82cda7f3a53e8447b80ccd16a82f7a53, type: 2}

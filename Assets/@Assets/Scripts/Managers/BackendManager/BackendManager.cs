@@ -1,3 +1,4 @@
+using LitJson;
 using UnityEngine;
 
 [DefaultExecutionOrder(-10000)]
@@ -5,7 +6,7 @@ public partial class BackendManager : MonoBehaviour
 {
     public static BackendManager Instance { get; private set; }
     private BackendTable _backendTable;
-
+    private BackendChart _backendChart;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -22,6 +23,7 @@ public partial class BackendManager : MonoBehaviour
     private void InitializeBackendComponents()
     {
         _backendTable = new BackendTable();
+        _backendChart = new BackendChart();
     }
 
 
@@ -32,6 +34,12 @@ public partial class BackendManager : MonoBehaviour
         // 게임 데이터 핸들러 초기화
         GameDataHandler.EnsureInitialized();
     }
+
+    public BackendResponse<JsonData> GetChartFromLocal(string chartName)
+    {
+        return _backendChart.GetChartFromLocal(chartName);
+    }
+
 }
 
 public class BackendResponse<T>

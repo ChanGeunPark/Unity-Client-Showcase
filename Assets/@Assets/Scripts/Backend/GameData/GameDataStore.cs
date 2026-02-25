@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using LitJson;
+using UnityEngine;
 
 /// <summary>
 /// 게임 데이터 보관소. 테이블(Inventory 등)만 보유하며 로직은 갖지 않음.
@@ -53,6 +56,48 @@ public class GameDataStore
             _currencyTable = value;
             GameDataManager.Instance.Notify(GameDataEventKind.CurrencyTableChanged, _currencyTable);
         }
+    }
+
+    private Dictionary<string, float> _gachaProbabilityData;
+    public Dictionary<string, float> GachaProbabilityData
+    {
+        get
+        {
+            if (_gachaProbabilityData != null) return _gachaProbabilityData;
+
+            _gachaProbabilityData = new Dictionary<string, float>();
+
+            try
+            {
+                var response = BackendManager.Instance.GetChartFromLocal("CharacterGachaProbability");
+                if (response == null || !response.IsSuccess || response.Data == null)
+                {
+                    Debug.LogError("[GameData] Failed to load CharacterGachaProbability chart");
+                    return _gachaProbabilityData;
+                }
+
+                JsonData rows = response.Data;
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    JsonData row = rows[i];
+                    string characterId = row["CharacterId"]?.ToString() ?? "";
+                    if (string.IsNullOrEmpty(characterId)) continue;
+
+                    string probStr = row["Probability"]?.ToString();
+                    if (string.IsNullOrEmpty(probStr)) continue;
+                    if (!float.TryParse(probStr, out float percent)) continue;
+
+                    _gachaProbabilityData.Add(characterId, percent);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[GameData] Error loading GachaProbabilityData: {e.Message}");
+            }
+
+            return _gachaProbabilityData;
+        }
+        set { if (_gachaProbabilityData == null) _gachaProbabilityData = value; }
     }
 
     private bool _isInitialized = false;
