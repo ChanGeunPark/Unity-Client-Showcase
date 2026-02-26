@@ -678,6 +678,55 @@ public class ResourceManager : MonoBehaviour
 
     #region Sprite Loading
 
+    /// <summary>키 기반 스프라이트 캐시 접두사 (씬 전환 시 ReleaseSpriteHandlesByKey()로만 해제 가능)</summary>
+    private const string SPRITE_KEY_PREFIX = "Sprite_";
+
+    /// <summary>
+    /// Addressable 키(예: AssetReferenceSprite.RuntimeKey)로 스프라이트 로드. 캐시·핸들 관리됨.
+    /// SO의 AssetReferenceSprite는 에디터 할당용으로 두고, 런타임에는 이 메서드로만 로드하면 중복 로드/해제가 한 곳에서 처리됨.
+    /// </summary>
+    public async UniTask<Sprite> LoadSpriteByKeyAsync(
+        object key,
+        CancellationToken cancellationToken = default
+    )
+    {
+        string spriteKey = SPRITE_KEY_PREFIX + (key?.ToString() ?? "");
+        if (string.IsNullOrEmpty(spriteKey) || spriteKey == SPRITE_KEY_PREFIX)
+            return null;
+
+        if (_resources.TryGetValue(spriteKey, out Object cached) && cached is Sprite cachedSprite)
+            return cachedSprite;
+
+        try
+        {
+            var handle = Addressables.LoadAssetAsync<Sprite>(key);
+            Sprite sprite = await handle.ToUniTask(cancellationToken: cancellationToken);
+            if (sprite == null)
+            {
+                if (handle.IsValid()) Addressables.Release(handle);
+                return null;
+            }
+            _resourceHandles.TryAdd(spriteKey, handle);
+            _resources.TryAdd(spriteKey, sprite);
+            return sprite;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"[ResourceManager] LoadSpriteByKeyAsync failed key={key}: {e.Message}");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// 키로 로드한 스프라이트 핸들만 해제 (씬 전환 시 호출 권장). 나머지 리소스는 유지.
+    /// 예: SceneManager.sceneUnloaded 콜백에서 ResourceManager.Instance.ReleaseSpriteHandlesByKey() 호출.
+    /// </summary>
+    public void ReleaseSpriteHandlesByKey()
+    {
+        ReleaseHandles(k => k.StartsWith(SPRITE_KEY_PREFIX, StringComparison.Ordinal));
+        foreach (var k in _resources.Keys.Where(key => key.StartsWith(SPRITE_KEY_PREFIX, StringComparison.Ordinal)).ToList())
+            _resources.TryRemove(k, out _);
+    }
 
     /// <summary>
     /// Sprite 비동기 로드 (SpriteAtlas 인덱스 지원)

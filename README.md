@@ -70,6 +70,7 @@ _(프로젝트에 맞게 Mermaid 등으로 그려 두시면 면접 시 설명하
    - 차트 파싱: `LoadCharacterChart`(Name, Grade), `LoadCharacterGachaProbability`(CharacterId, Probability → Dictionary<string, float>).
 8. **`GachaCtrl`** (`Scripts/Backend/Controller/`)
    - `DoCharacterGacha(gachaCount)`: Store의 GachaProbabilityData 가중치로 랜덤 뽑기, CharacterChart와 매칭해 리스트 반환.
+9. **`ResourceManager`** 스프라이트: `LoadSpriteByKeyAsync(key)`로 캐시 로드, `ReleaseSpriteHandlesByKey()`로 키 기반 스프라이트만 해제. 씬 전환 시 해제 호출 권장.
 
 ---
 

@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Popup
   m_GUID: 8c501d8840d91492681ee93478450393
   m_SerializeEntries:
+  - m_GUID: 4fc2ac4f684de451a9570996cc858792
+    m_Address: CatLibraryPopupUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7d0334d2a02d942f0952b287a73cc41c
     m_Address: InventoryPopupUI
     m_ReadOnly: 0
