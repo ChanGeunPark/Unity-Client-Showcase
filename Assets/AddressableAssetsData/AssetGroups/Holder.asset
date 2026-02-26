@@ -29,8 +29,7 @@ MonoBehaviour:
   - m_GUID: ed73453c8ce4543d6bad7f067a3256db
     m_Address: CharacterHolder
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - MainAsset
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a99d21fee4c374034941ca178132ef9c, type: 2}

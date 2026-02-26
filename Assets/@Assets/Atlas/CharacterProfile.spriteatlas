@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CharacterProfile
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 4
+      m_BuildTarget: iOS
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 4
+      m_BuildTarget: Android
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 7707fa02213ee4b03a7955c63cbd62d3, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - b6ae75d05f05b4a5583fb2241ca9c2b0: 21300000
+    - b0cb99b1cb50a44a68b44607e6682182: 21300000
+    - 4d0178125a40a4d1bb298061675ff6fc: 21300000
+    - 4bb0b76215dfe4f3c9dae9f2f7b28f10: 21300000
+    - 328ee772e1aac4895a600dcd855ebb99: 21300000
+    - c926fe9298c284a4eb8126438361c5e6: 21300000
+    - 9f42eae2fd22f45fab09e58edbc16b60: 21300000
+    - 2b580ce2926ba4f2f9bc2514d888aa3d: 21300000
+    - 02bdb0933d0c5417d8e4411e380b3d63: 21300000
+    - dc0ff0b367aa34d8d9c1898c2c52212f: 21300000
+    - ae035fd36c5b4401ba44a9abcdde228e: 21300000
+    - 23e2c0a45aaf44e84b583c6afcfe5029: 21300000
+    - 8d0df2b44c49f4c0f866154385f037d8: 21300000
+    - d4662537ef36f46aca799c52f3de4728: 21300000
+    - 9bf698a739e3349d1a9a257d2b2dd68d: 21300000
+    - 5a4cfbc803fc14f18950b6bb1618004a: 21300000
+    - 0c48396a5ce634f5d99f4377cca81ac4: 21300000
+    - a354d45b95bca4d6fa7d76b2f8637c9a: 21300000
+    - 2f50c57bc22e04f26b59ad11d8c68d01: 21300000
+    - 3598018b439ac4c45aa4624a999243ef: 21300000
+    - 6701f97d134ac450c880f8ece4976d91: 21300000
+    - 646ec28dbf83b44cb81add565af1ea44: 21300000
+    - 93391e0ff668440adb16d72f0bb3cd43: 21300000
+    - 57d732cf24b73456fb951073ace9ba62: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: b6ae75d05f05b4a5583fb2241ca9c2b0, type: 3}
+  - {fileID: 21300000, guid: b0cb99b1cb50a44a68b44607e6682182, type: 3}
+  - {fileID: 21300000, guid: 4d0178125a40a4d1bb298061675ff6fc, type: 3}
+  - {fileID: 21300000, guid: 4bb0b76215dfe4f3c9dae9f2f7b28f10, type: 3}
+  - {fileID: 21300000, guid: 328ee772e1aac4895a600dcd855ebb99, type: 3}
+  - {fileID: 21300000, guid: c926fe9298c284a4eb8126438361c5e6, type: 3}
+  - {fileID: 21300000, guid: 9f42eae2fd22f45fab09e58edbc16b60, type: 3}
+  - {fileID: 21300000, guid: 2b580ce2926ba4f2f9bc2514d888aa3d, type: 3}
+  - {fileID: 21300000, guid: 02bdb0933d0c5417d8e4411e380b3d63, type: 3}
+  - {fileID: 21300000, guid: dc0ff0b367aa34d8d9c1898c2c52212f, type: 3}
+  - {fileID: 21300000, guid: ae035fd36c5b4401ba44a9abcdde228e, type: 3}
+  - {fileID: 21300000, guid: 23e2c0a45aaf44e84b583c6afcfe5029, type: 3}
+  - {fileID: 21300000, guid: 8d0df2b44c49f4c0f866154385f037d8, type: 3}
+  - {fileID: 21300000, guid: d4662537ef36f46aca799c52f3de4728, type: 3}
+  - {fileID: 21300000, guid: 9bf698a739e3349d1a9a257d2b2dd68d, type: 3}
+  - {fileID: 21300000, guid: 5a4cfbc803fc14f18950b6bb1618004a, type: 3}
+  - {fileID: 21300000, guid: 0c48396a5ce634f5d99f4377cca81ac4, type: 3}
+  - {fileID: 21300000, guid: a354d45b95bca4d6fa7d76b2f8637c9a, type: 3}
+  - {fileID: 21300000, guid: 2f50c57bc22e04f26b59ad11d8c68d01, type: 3}
+  - {fileID: 21300000, guid: 3598018b439ac4c45aa4624a999243ef, type: 3}
+  - {fileID: 21300000, guid: 6701f97d134ac450c880f8ece4976d91, type: 3}
+  - {fileID: 21300000, guid: 646ec28dbf83b44cb81add565af1ea44, type: 3}
+  - {fileID: 21300000, guid: 93391e0ff668440adb16d72f0bb3cd43, type: 3}
+  - {fileID: 21300000, guid: 57d732cf24b73456fb951073ace9ba62, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - character_illust_alosha
+  - character_illust_hoosigi
+  - character_illust_hailey
+  - character_illust_lime
+  - character_illust_phinx
+  - character_illust_nate
+  - character_illust_creamer
+  - character_illust_huchu
+  - character_illust_yeonghee
+  - character_illust_teddy
+  - character_illust_kay
+  - character_illust_ruru
+  - character_illust_moses
+  - character_illust_freesia
+  - character_illust_treamer
+  - character_illust_calla
+  - character_illust_lucia
+  - character_illust_lucius
+  - character_illust_loui
+  - character_illust_meg
+  - character_illust_vega
+  - character_illust_ivan
+  - character_illust_isus
+  - character_illust_benjamin
+  m_RenderDataMap: {}
+  m_Tag: CharacterProfile
+  m_IsVariant: 0

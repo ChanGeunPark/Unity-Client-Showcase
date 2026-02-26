@@ -14,6 +14,10 @@ public class CatLibraryPopupUI : BasePopupUI
         CharacterList
     }
 
+
+    private const int GridColumnCount = 5;
+    private const float DiagonalDelayStep = 0.1f;
+
     private void Awake()
     {
         BindButton(typeof(Buttons));
@@ -40,11 +44,18 @@ public class CatLibraryPopupUI : BasePopupUI
         var sortedCharts = characterChart.OrderBy(chart => !ownedIds.Contains(chart.CharacterId)).ToList();
 
         Transform parent = listRoot.transform;
-        foreach (var chart in sortedCharts)
+
+        for (int index = 0; index < sortedCharts.Count; index++)
         {
+            var chart = sortedCharts[index];
+            int row = index / GridColumnCount;
+            int col = index % GridColumnCount;
+            float diagonalDelay = (row + col) * DiagonalDelayStep;
+
             var characterData = GameDataManager.Instance.Store.CharacterTable?.Characters?.Find(x => x.CharacterId == chart.CharacterId) ?? null;
             var holder = UIManager.Instance.MakeItemHolder<CharacterHolder>(parent);
             holder.Initialize(chart, characterData);
+            holder.ShowAnimation(diagonalDelay, index);
         }
     }
 }
