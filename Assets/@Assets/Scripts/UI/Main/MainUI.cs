@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class MainUI : BaseUI
@@ -22,6 +23,26 @@ public class MainUI : BaseUI
         BindText(typeof(Texts));
     }
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            var result = BackendManager.Instance.DoCharacterGacha(1);
+            if (result.IsSuccess)
+            {
+                foreach (var character in result.Data)
+                {
+                    Debug.Log(character.CharacterId);
+                }
+            }
+            else
+            {
+                Debug.Log(result.Message);
+            }
+        }
+    }
+
     private void Start()
     {
         AddButtonListener(Buttons.InventoryButton, OpenInventoryPopup);
@@ -41,6 +62,7 @@ public class MainUI : BaseUI
 
         GameDataManager.Instance.EventBus.OnCurrencyTableChanged += OnCurrencyTableChanged;
         Initialize();
+
     }
 
     protected override void OnDestroy()

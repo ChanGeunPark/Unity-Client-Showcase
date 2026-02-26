@@ -63,12 +63,26 @@
    - 백엔드 연동·테이블 제공. 부분 클래스로 기능 분리.
 5. **`UIManager`** (`Scripts/Managers/`)
    - 팝업/UI 생명주기, EventBus 구독 연동.
-
-TODO:: 가챠·인벤토리 구현 추가.
+6. **`BackendChart`** (`Scripts/Backend/Services/`)
+   - CSV 차트 로드. `GetChartFromLocal(chartName)` → Resources/Charts/{chartName}.csv 로드 후 JsonData 변환.
+7. **`BackendChartHelper`** (`Scripts/Backend/Services/Helper/`)
+   - 차트 파싱: `LoadCharacterChart`(Name, Grade), `LoadCharacterGachaProbability`(CharacterId, Probability → Dictionary<string, float>).
+8. **`GachaCtrl`** (`Scripts/Backend/Controller/`)
+   - `DoCharacterGacha(gachaCount)`: Store의 GachaProbabilityData 가중치로 랜덤 뽑기, CharacterChart와 매칭해 리스트 반환.
 
 ---
 
-## 4. 연출 / 데모
+## 4. 차트·가챠
+
+- **차트 로드**: `BackendManager.GetChartContents(chartName)` → BackendChart가 CSV 로드 후 Helper에서 타입별 파싱.
+  - `CharacterChart`: 캐릭터 목록 (Name, Grade).
+  - `CharacterGachaProbability`: 캐릭터별 가챠 확률 (CharacterId, Probability).
+- **초기화**: `InitializeGameData()`에서 위 두 차트를 한 번 로드해 Store에 넣음. Reset 시 null로 비운 뒤 재로드.
+- **가챠**: `GachaCtrl.DoCharacterGacha(gachaCount)` — 확률 비율에 맞게 가중치 랜덤으로 `gachaCount`번 뽑아 `List<CharacterChart>` 반환.
+
+---
+
+## 5. 연출 / 데모
 
 **TODO:: 가챠·인벤토리 연출 추가.**
 

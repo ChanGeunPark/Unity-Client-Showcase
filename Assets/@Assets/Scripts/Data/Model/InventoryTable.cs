@@ -17,7 +17,7 @@ public class InventoryTable
         {
             MaterialItems = new List<InventoryItem>(),
             EtcItems = new List<InventoryItem>(),
-            MaxMaterialItemCount = 10
+            MaxMaterialItemCount = 100
         };
     }
 }

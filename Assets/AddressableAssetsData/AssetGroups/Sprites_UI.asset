@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Sprites_UI
   m_GUID: 2c047f202c93642c99b1cae3b7de9fdf
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 0b470f11911a84bf696856d90d779b9b
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/CatLibrary/CatLibraryBg.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a99d21fee4c374034941ca178132ef9c, type: 2}
   m_SchemaSet:

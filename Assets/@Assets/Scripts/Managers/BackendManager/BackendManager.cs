@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using LitJson;
 using UnityEngine;
 
@@ -20,6 +21,11 @@ public partial class BackendManager : MonoBehaviour
         InitializeBackendComponents();
     }
 
+    private void Start()
+    {
+        InitGameData();
+    }
+
     private void InitializeBackendComponents()
     {
         _backendTable = new BackendTable();
@@ -38,6 +44,39 @@ public partial class BackendManager : MonoBehaviour
     public BackendResponse<JsonData> GetChartFromLocal(string chartName)
     {
         return _backendChart.GetChartFromLocal(chartName);
+    }
+
+    // 차트 내용 반환
+    public BackendResponse<object> GetChartContents(string chartName)
+    {
+        BackendResponse<JsonData> localData = GetChartFromLocal(chartName);
+        if (localData == null || !localData.IsSuccess || localData.Data == null) return null;
+
+        switch (chartName)
+        {
+            case "CharacterChart":
+                BackendResponse<List<CharacterChart>> characterChartRes = _backendChart.LoadCharacterChart(localData.Data);
+                return new BackendResponse<object>
+                {
+                    Data = characterChartRes.Data,
+                    Message = characterChartRes.Message,
+                    IsSuccess = characterChartRes.IsSuccess,
+                    StatusCode = characterChartRes.StatusCode,
+                    MessageRaw = characterChartRes.MessageRaw
+                };
+            case "CharacterGachaProbability":
+                BackendResponse<Dictionary<string, float>> gachaProbRes = _backendChart.LoadCharacterGachaProbability(localData.Data);
+                return new BackendResponse<object>
+                {
+                    Data = gachaProbRes.Data,
+                    Message = gachaProbRes.Message,
+                    IsSuccess = gachaProbRes.IsSuccess,
+                    StatusCode = gachaProbRes.StatusCode,
+                    MessageRaw = gachaProbRes.MessageRaw
+                };
+        }
+
+        return null;
     }
 
 }
