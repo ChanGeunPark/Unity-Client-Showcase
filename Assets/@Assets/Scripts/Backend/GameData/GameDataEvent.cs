@@ -52,4 +52,6 @@ public enum GameDataEventKind
     EtcItemsChanged,
 
     CurrencyTableChanged,
+
+    CharacterTableChanged,
 }

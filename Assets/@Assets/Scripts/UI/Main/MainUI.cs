@@ -48,7 +48,7 @@ public class MainUI : BaseUI
         AddButtonListener(Buttons.InventoryButton, OpenInventoryPopup);
         AddButtonListener(Buttons.AddBoltButton, () =>
         {
-            BackendManager.Instance.UpdateInventoryTable("bolt", 1, ItemType.Material, true);
+            UIManager.Instance.ShowPopupUI<CatLibraryPopupUI>();
         });
         AddButtonListener(Buttons.GoldButton, () =>
         {

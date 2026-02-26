@@ -78,6 +78,23 @@ public class GameDataStore
         }
     }
 
+    private CharacterTable _characterTable;
+    public CharacterTable CharacterTable
+    {
+        get
+        {
+            if (_characterTable == null)
+                _characterTable = BackendManager.Instance.GetCharacterTable()?.Data;
+            return _characterTable;
+        }
+        set
+        {
+            if (_characterTable == value) return;
+            _characterTable = value;
+            GameDataManager.Instance.Notify(GameDataEventKind.CharacterTableChanged, _characterTable);
+        }
+    }
+
 
     private bool _isInitialized = false;
 
@@ -109,6 +126,7 @@ public class GameDataStore
         _isInitialized = false;
         _characterChart = null;
         _gachaProbabilityData = null;
+        _characterTable = null;
         InventoryTable = null;
     }
 
