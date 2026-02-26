@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using LitJson;
 using UnityEngine;
 
-public class BackendChart
+public partial class BackendChart
 {
+    // 로컬 CSV 파일에서 차트 내용 반환
     public BackendResponse<JsonData> GetChartFromLocal(string chartName)
     {
         try
         {
-            // 차트 이름을 파일 이름으로 매핑
-            string fileName = $"{chartName}.csv";
-
-            // Resources/@Charts 폴더에서 CSV 파일 로드
-            TextAsset csvFile = Resources.Load<TextAsset>($"Charts/{fileName}");
+            // Resources/Charts 폴더에서 CSV 로드 (확장자 없이 에셋 이름만 사용)
+            TextAsset csvFile = Resources.Load<TextAsset>($"Charts/{chartName}");
 
             if (csvFile == null)
             {
-                Debug.LogError($"[BackendChart] CSV file not found: Charts/{fileName}");
+                Debug.LogError($"[BackendChart] CSV file not found: Charts/{chartName} (Resources/Charts/ 폴더에 있어야 하며, Addressable 체크 해제 필요)");
                 return null;
             }
 
@@ -26,11 +24,11 @@ public class BackendChart
 
             if (jsonData == null)
             {
-                Debug.LogError($"[BackendChart] Failed to convert CSV to JsonData: {fileName}");
+                Debug.LogError($"[BackendChart] Failed to convert CSV to JsonData: {chartName}");
                 return null;
             }
 
-            Debug.Log($"[BackendChart] Successfully loaded chart: {chartName} from {fileName}");
+            Debug.Log($"[BackendChart] Successfully loaded chart: {chartName}");
             return new BackendResponse<JsonData>(true, 200, null, null, jsonData);
         }
         catch (Exception e)
@@ -41,6 +39,7 @@ public class BackendChart
     }
 
 
+    // CSV 파일 내용을 JsonData로 변환
     private JsonData ConvertCSVToJsonData(string csvContent)
     {
         try
@@ -97,6 +96,8 @@ public class BackendChart
         }
     }
 
+
+    // CSV 파일 한 줄을 파싱하여 문자열 리스트로 반환
     private List<string> ParseCSVLine(string line)
     {
         var result = new List<string>();
@@ -134,4 +135,7 @@ public class BackendChart
         result.Add(currentField);
         return result;
     }
+
+
+
 }

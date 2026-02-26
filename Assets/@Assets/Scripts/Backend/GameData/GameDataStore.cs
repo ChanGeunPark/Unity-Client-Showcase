@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using LitJson;
 using UnityEngine;
 
 /// <summary>
@@ -8,6 +7,27 @@ using UnityEngine;
 /// </summary>
 public class GameDataStore
 {
+
+
+    ///////////////////////////////////////// [Chart] /////////////////////////////////////////
+    private List<CharacterChart> _characterChart;
+    public List<CharacterChart> CharacterChart
+    {
+        get => _characterChart;
+        set { if (_characterChart == null) _characterChart = value; }
+    }
+
+
+    private Dictionary<string, float> _gachaProbabilityData;
+    public Dictionary<string, float> GachaProbabilityData
+    {
+        get => _gachaProbabilityData;
+        set { if (_gachaProbabilityData == null) _gachaProbabilityData = value; }
+    }
+
+
+
+    ///////////////////////////////////////// [Table] /////////////////////////////////////////
     private InventoryTable _inventoryTable;
     public InventoryTable InventoryTable
     {
@@ -58,47 +78,6 @@ public class GameDataStore
         }
     }
 
-    private Dictionary<string, float> _gachaProbabilityData;
-    public Dictionary<string, float> GachaProbabilityData
-    {
-        get
-        {
-            if (_gachaProbabilityData != null) return _gachaProbabilityData;
-
-            _gachaProbabilityData = new Dictionary<string, float>();
-
-            try
-            {
-                var response = BackendManager.Instance.GetChartFromLocal("CharacterGachaProbability");
-                if (response == null || !response.IsSuccess || response.Data == null)
-                {
-                    Debug.LogError("[GameData] Failed to load CharacterGachaProbability chart");
-                    return _gachaProbabilityData;
-                }
-
-                JsonData rows = response.Data;
-                for (int i = 0; i < rows.Count; i++)
-                {
-                    JsonData row = rows[i];
-                    string characterId = row["CharacterId"]?.ToString() ?? "";
-                    if (string.IsNullOrEmpty(characterId)) continue;
-
-                    string probStr = row["Probability"]?.ToString();
-                    if (string.IsNullOrEmpty(probStr)) continue;
-                    if (!float.TryParse(probStr, out float percent)) continue;
-
-                    _gachaProbabilityData.Add(characterId, percent);
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"[GameData] Error loading GachaProbabilityData: {e.Message}");
-            }
-
-            return _gachaProbabilityData;
-        }
-        set { if (_gachaProbabilityData == null) _gachaProbabilityData = value; }
-    }
 
     private bool _isInitialized = false;
 
@@ -109,7 +88,18 @@ public class GameDataStore
             ResetGameData();
         }
 
-        // TODO: 차트 데이터 넣기
+        BackendResponse<object> characterChartRes = BackendManager.Instance.GetChartContents("CharacterChart");
+        if (characterChartRes != null && characterChartRes.IsSuccess && characterChartRes.Data != null)
+        {
+            CharacterChart = characterChartRes.Data as List<CharacterChart>;
+        }
+
+        BackendResponse<object> gachaProbRes = BackendManager.Instance.GetChartContents("CharacterGachaProbability");
+        if (gachaProbRes != null && gachaProbRes.IsSuccess && gachaProbRes.Data != null)
+        {
+            GachaProbabilityData = gachaProbRes.Data as Dictionary<string, float>;
+        }
+
         _isInitialized = true;
     }
 
@@ -117,6 +107,8 @@ public class GameDataStore
     private void ResetGameData()
     {
         _isInitialized = false;
+        _characterChart = null;
+        _gachaProbabilityData = null;
         InventoryTable = null;
     }
 

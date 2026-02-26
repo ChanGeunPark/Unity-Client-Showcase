@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InventoryCtrl
@@ -29,6 +30,14 @@ public class InventoryCtrl
             AddOrUpdateItem(list, itemId, count, type);
         else if (!TrySubtractItem(list, itemId, count))
             return new BackendResponse<InventoryTable>(false, null, "Not enough items");
+
+        // Material 추가 시만, 수정된 데이터(response.Data) 기준으로 슬롯 상한 검사
+        if (type == ItemType.Material)
+        {
+            int totalCount = response.Data.MaterialItems.Sum(x => x.Count);
+            if (totalCount >= response.Data.MaxMaterialItemCount)
+                return new BackendResponse<InventoryTable>(false, null, "Max material item count");
+        }
 
         LocalDataManager.Instance.SaveDataMsgPack(response.Data, "InventoryTable");
         GameDataManager.Instance.Store.InventoryTable = response.Data;
