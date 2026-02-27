@@ -15,8 +15,218 @@ MonoBehaviour:
   m_GroupName: Sprites_UI
   m_GUID: 2c047f202c93642c99b1cae3b7de9fdf
   m_SerializeEntries:
+  - m_GUID: 013a24a96ab004012a3b764a3927b450
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/@card/Expectation_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 054d679385f134c77a2c718bce19979d
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect2_light3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0b470f11911a84bf696856d90d779b9b
     m_Address: Assets/@Assets/Sprites/Sprite_UI/CatLibrary/CatLibraryBg.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0fc37aac8858d48a08713fb518591d1f
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_bg2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 104b260d730ed47ceb49efcaba598de6
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect2_light2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 12f13eb1006214d858e14eb8e40bef54
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect2_star2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e4e281c9638743589d3e22aeb70beec
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/@card/Anxiety_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 229fdf52ec6e64488a7fba37317fdae8
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_leaf2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28634249fc0424feab56ac9a50a8d4fc
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_ring2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2bd734fc5b5094102b3a4a94ad936491
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_leaf_right2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ed80233308594182a5736c05f69474b
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect5_light2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f87a67ed017249ffa396eee5b74c242
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect1_light4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f98fab2294174f479f4e8979d85c002
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_bg1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3dda40fbf83eb40f1b51de74a39e1302
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_bg.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 403d6577275414508adf37bc68cd8dca
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect5_light1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d1bf257cf9634ad9ac49b9311a8f7e8
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect4_diagonal1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 686216807de2a40309c43d5e52abffec
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect3_bg2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b1a42f8bc4384893a04db7737e67501
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_leaf_left1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7fdc1a6dea2c047b89bfbb723e91cac9
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/@card/Beginning_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 826d960beaf59422dafe6eebe1231958
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect5_itemBox.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 839da5bc37dcb4f1f9340d0076761430
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/@card/Judgment_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 859a51c7d709b46efa746d228755c05e
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect1_light1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b56cdbe4880f4809bfb678eac64aaac
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/@card/Harmony_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ccdafe3d8cf245b18c82070d381cc4f
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect4_diagonal2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e61a7f234c2b4be49c948bff332f01b
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect1_light3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97c21eba0d7a243229271d6021f79f6a
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_leaf_right1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a220c17697bea41ce8279b841fe77c34
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect3_starTail.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a62fa008eb94f4f1c8afd39773b5f1fc
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect2_star1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b81eb6a02490144128154fe26e3691af
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/@card/TheAngel_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4cb0a4f22d0b417394d622b394ae2c2
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_ring.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc281b5861a654e55aa4ec718bd64e32
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect4_light1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccf40abf7fefa49ce82ee1bd5bc7c331
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_bg3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce62f83b39e4640ae97a7cfc10a90831
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect5_skin_base.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d29148eae054f4457ba9ee823352df69
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/@card/Passion_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d4c15d5d152d643aeb447ee6b4276f84
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_cat.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6befc8723341467fa44b019d39aef4b
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_cat_open.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de2a546af060343d4b03be11db65ef3c
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_leaf1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de89c1b7d206047048378fd8cad997af
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect2_light1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dfc7b0725596f4b8b9ca8781bbda951f
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect4_light2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebf71d3bf85f9486fb8482c0e0136925
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect4_diagonal3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f129fb0e13cab4ae79a14e896eed6c80
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect5_light3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f5f00cfb9c7b24a7ba104dc47b937cb3
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect1_light2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd49b150674ee477582d02843437c8ad
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/gacha_leaf_left2.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
