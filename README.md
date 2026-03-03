@@ -30,7 +30,6 @@
 [Data]      Model, Handler, SO (ScriptableObject)
 ```
 
-
 ---
 
 ## 2. 폴더 구조
