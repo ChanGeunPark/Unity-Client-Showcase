@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d548d6a62d4a646c99101caf798b6873, type: 3}
+  m_Name: GachaPopupConfig_Default
+  m_EditorClassIdentifier: 
+  introDelay: 1
+  step1FadeDuration: 0.5
+  step1BackgroundFadeDuration: 1
+  skipButtonShowDelay: 1.5
+  cardFadeOutDuration: 0.4
+  cardMoveY: 1000
+  cardFadeOutDelays:
+  - 0
+  - 0.1
+  - 0.2
+  - 0.3
+  - 0.4
+  - 0.5
+  - 0.6
+  smokeShowDelay: 3.4
+  gachaAnimationStartDelay: 3.5
+  shootingStarDelay: 1
+  shootingStarMoveDuration: 1
+  shootingStarLifetimeEndDelay: 2
+  shootingStarTailScaleDuration: 2
+  shootingStarTailScaleDelay: 0.5
+  portalShowDelay: 2.5
+  portalScaleDuration: 0.3
+  afterPortalDelay: 0.5
+  afterPortalScaleDuration: 1
+  whiteOverlayFadeDelay: 0.7
+  whiteOverlayFadeDuration: 1.5
+  catFaceBlinkOn: 4
+  catFaceBlinkOff: 1
+  mainGroupScaleFrom: 1.2
+  grassScaleFrom: 0.8
+  frontCatsScaleFrom: 0.8
+  frontCatsScaleTo: 1.1
+  leafScaleFrom: 1.2
+  initDuration: 1
+  bellRotationAngle: 25
+  mainGroupShakeDuration: 0.5
+  mainGroupShakeStrength: 10
+  portalRiseDuration: 5
+  mainGroupScaleEnd: 2
+  mainGroupMoveY: 600
+  grassScaleEnd: 1.5
+  grassMoveY: -200
+  leftLeafMoveOffset: {x: -200, y: 50, z: 0}
+  rightLeafMoveOffset: {x: 200, y: 50, z: 0}
+  shootingStarParticleTier1Min: 0
+  shootingStarParticleTier1Max: 5
+  shootingStarParticleTier2_3Speed: 4
+  shootingStarParticleDefaultSpeed: 2
+  afterPortalParticleTier1FPS: 3
+  afterPortalParticleTier2_3StartFrame: 4
+  afterPortalParticleDefaultStartFrame: 2

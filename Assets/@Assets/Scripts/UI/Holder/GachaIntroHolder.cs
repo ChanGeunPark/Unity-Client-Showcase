@@ -4,55 +4,68 @@ using AirFishLab.ScrollingList;
 using AssetKits.ParticleImage;
 using Coffee.UIExtensions;
 using DG.Tweening;
-
 using TMPro;
-
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class GachaIntroHolder : ListBox, IPointerClickHandler
 {
-    public float DelayTime = 0;
+    /// <summary>셰이더 프로퍼티 이름 (설정과 무관한 고정값)</summary>
+    private static class MaterialProps
+    {
+        public const string GlowGlobal = "_GlowGlobal";
+        public const string RoundWaveStrength = "_RoundWaveStrength";
+        public const string ChromAberrAmount = "_ChromAberrAmount";
+        public const string ShineLocation = "_ShineLocation";
+        public const string ShineGlow = "_ShineGlow";
+        public const string GradBlend = "_GradBlend";
+        public const string HitEffectBlend = "_HitEffectBlend";
+    }
+
+    #region Serialized & Public Fields
+
+    public float DelayTime;
+    public int Tier;
+    public Action<GachaIntroHolder> OnClick { get; set; }
+
+    [Tooltip("연출 설정 (리소스 경로, 타이밍, 티어별 값). 미할당 시 카드 클릭 연출이 동작하지 않음. Data/SO/GachaCardRevealConfig_Default 사용 가능")]
+    [SerializeField] private GachaCardRevealConfig _config;
     [SerializeField] private Image _smokeAnimation;
     [SerializeField] private Image _cardImage;
     [SerializeField] private UIParticle _shineEffect;
     [SerializeField] private Image _lineImage;
     [SerializeField] private TextMeshProUGUI _CardName;
 
+    #endregion
+
+    #region Private State
+
     private Material _cardImageMaterialInstance;
     private bool _isClickable = true;
 
-    public int Tier;
+    #endregion
 
-    public Action<GachaIntroHolder> OnClick { get; set; }
+    #region Unity Lifecycle
 
-    void Start()
+    private void Start()
     {
         if (_smokeAnimation != null)
-        {
             _smokeAnimation.gameObject.SetActive(false);
-        }
-
 
         if (_cardImage != null)
+            SetupCardMaterial();
+
+        if (_smokeAnimation != null)
         {
-            // 공용 머티리얼과 분리하기 위해 이 카드 전용 인스턴스 생성
-            _cardImageMaterialInstance = new Material(_cardImage.material);
-            _cardImage.material = _cardImageMaterialInstance;
-            _cardImage.material.SetFloat("_GlowGlobal", 1f);
-            _cardImage.material.SetFloat("_RoundWaveStrength", 0f);
-            _cardImage.material.SetFloat("_ChromAberrAmount", 0f);
-            _cardImage.material.SetFloat("_ShineLocation", 0f);
-            _cardImage.material.SetFloat("_ShineGlow", 0f);
-            _cardImage.material.SetFloat("_GradBlend", 0f);
-            _cardImage.material.SetFloat("_HitEffectBlend", 0f);
+            if (DelayTime > 0f)
+                DOTween.Sequence().AppendInterval(DelayTime).AppendCallback(() => _smokeAnimation.gameObject.SetActive(true)).SetTarget(this);
+            else
+                _smokeAnimation.gameObject.SetActive(true);
         }
 
-        if (DelayTime > 0f && _smokeAnimation != null)
-            DOTween.Sequence().AppendInterval(DelayTime).AppendCallback(() => _smokeAnimation.gameObject.SetActive(true)).SetTarget(this);
-        else if (_smokeAnimation != null)
-            _smokeAnimation.gameObject.SetActive(true);
+        if (_shineEffect != null)
+            _shineEffect.gameObject.SetActive(false);
     }
 
     private void OnDestroy()
@@ -61,252 +74,214 @@ public class GachaIntroHolder : ListBox, IPointerClickHandler
             Destroy(_cardImageMaterialInstance);
     }
 
+    #endregion
+
+    #region Setup
+
+    private void SetupCardMaterial()
+    {
+        _cardImageMaterialInstance = new Material(_cardImage.material);
+        _cardImage.material = _cardImageMaterialInstance;
+        _cardImage.material.SetFloat(MaterialProps.GlowGlobal, 1f);
+        _cardImage.material.SetFloat(MaterialProps.RoundWaveStrength, 0f);
+        _cardImage.material.SetFloat(MaterialProps.ChromAberrAmount, 0f);
+        _cardImage.material.SetFloat(MaterialProps.ShineLocation, 0f);
+        _cardImage.material.SetFloat(MaterialProps.ShineGlow, 0f);
+        _cardImage.material.SetFloat(MaterialProps.GradBlend, 0f);
+        _cardImage.material.SetFloat(MaterialProps.HitEffectBlend, 0f);
+    }
+
+    #endregion
+
+    #region Click Handler
+
     public void OnPointerClick(PointerEventData eventData)
     {
-
-        if (!_isClickable)
-        {
-            return;
-        }
-
+        if (!_isClickable) return;
         _isClickable = false;
 
-        if (_cardImage != null)
-        {
-            OnClick?.Invoke(this);
+        if (_cardImage == null || _config == null) return;
 
+        OnClick?.Invoke(this);
 
+        var rainbowHighlight = CreateAndParent(_config.rainbowHighlightName, _cardImage.transform);
+        var powerBurst = CreateAndParent(_config.powerBurstName, transform);
+        SetLocalIdentity(rainbowHighlight.transform);
+        SetLocalIdentity(powerBurst.transform);
+        rainbowHighlight.SetActive(false);
+        powerBurst.SetActive(false);
 
+        PlayCardRevealTweens();
+        AnimateShineEffectWithDOTween();
+        ChromAberrAmountDOTween();
+        AnimateRoundWaveStrengthDOTween();
 
-
-
-            GameObject ractangleRainbowHighlight = ResourceManager.Instance.Load<GameObject>("RactangleRainbowHighlight");
-            GameObject rainbowHighlight = Instantiate(ractangleRainbowHighlight, _cardImage.transform);
-
-
-
-            rainbowHighlight.transform.localPosition = Vector3.zero;
-            rainbowHighlight.transform.localScale = Vector3.one;
-
-
-
-
-
-            GameObject powerBurstV8 = ResourceManager.Instance.Load<GameObject>("GachaPowerBurst");
-            GameObject powerBurst = Instantiate(powerBurstV8, this.transform);
-            powerBurst.transform.localPosition = Vector3.zero;
-            powerBurst.transform.localScale = Vector3.one;
-
-            rainbowHighlight.SetActive(false);
-            powerBurst.SetActive(false);
-
-
-            transform.DOScale(1.3f, 0.6f).SetEase(Ease.OutQuad).SetAutoKill(true).SetDelay(0.4f);
-            transform.DOLocalMove(new Vector3(0, 0, 0), 0.6f).SetEase(Ease.OutQuad).SetAutoKill(true).SetDelay(0.4f);
-            transform.DOLocalRotate(new Vector3(0, 180, 10), 0.3f).SetEase(Ease.Linear).SetLoops(2, LoopType.Yoyo).SetAutoKill(true).SetDelay(0.4f);
-
-
-
-
-            AnimateShineEffectWithDOTween();
-            ChromAberrAmountDOTween();
-            AnimateRoundWaveStrengthDOTween();
-
-            void ShineAndSpreadCallback()
-            {
-                GameObject energySpread = ResourceManager.Instance.Load<GameObject>("GachaSpreadEffect");
-                GameObject spread = Instantiate(energySpread, this.transform);
-                spread.transform.localPosition = Vector3.zero;
-
-
-                GameObject seowonLightRays = ResourceManager.Instance.Load<GameObject>("GachaLightRays");
-                GameObject lightRays = Instantiate(seowonLightRays, _cardImage.transform);
-                lightRays.transform.localPosition = Vector3.zero;
-                lightRays.transform.localScale = Vector3.one;
-
-
-                float shineScale = 0f;
-                DOTween.To(() => shineScale, x => { shineScale = x; _shineEffect.scale = x; }, 10f, 0.5f).SetTarget(this);
-
-
-
-                spread.transform.DOScale(Vector3.one, 1.5f).From(Vector3.zero).SetAutoKill(true).OnComplete(() =>
-                 {
-                     ParticleImage starsParticle = spread.transform.Find("Stars").GetComponent<ParticleImage>();
-                     if (Tier == 1)
-                     {
-                         starsParticle.textureSheetFPS = 3;
-                     }
-                     else if (Tier == 2 || Tier == 3)
-                     {
-                         starsParticle.textureSheetStartFrame = 4;
-                     }
-                     else
-                     {
-                         starsParticle.textureSheetStartFrame = 2;
-                     }
-
-                     starsParticle.gravityEnabled = true;
-                 });
-
-                //1차
-                this.transform.DOShakePosition(1f, 5, 12, 90, true, false).SetEase(Ease.InQuad).SetAutoKill(true).OnComplete(() =>
-                {
-
-                    /// === 레전드 등급 효과 추가 ===
-                    rainbowHighlight.SetActive(true);
-                    powerBurst.SetActive(true);
-                    if (Tier == 1)
-                    {
-                        rainbowHighlight.GetComponent<Animator>().Play("RactangleRainbowAniLegend");
-                    }
-                    else if (Tier == 2 || Tier == 3)
-                    {
-                        rainbowHighlight.GetComponent<Animator>().Play("RactangleRainbowAniGood");
-                    }
-                    else
-                    {
-                        rainbowHighlight.GetComponent<Animator>().Play("RactangleRainbowAniNormal");
-                    }
-                    rainbowHighlight.GetComponent<Image>().DOFade(1f, 0.1f).From(0f).SetAutoKill(true);
-                    /// === 레전드 등급 효과 추가 ===
-
-                    _cardImage.transform.DOScale(1.2f, 0.1f).SetAutoKill(true).SetLoops(2, LoopType.Yoyo);
-                    _lineImage.transform.DOScale(1.2f, 0.1f).SetAutoKill(true).SetLoops(2, LoopType.Yoyo);
-                    // spread.transform.DOScale(1.2f, 0.2f).SetAutoKill(true).SetLoops(2, LoopType.Yoyo);
-                    _shineEffect.transform.DOScale(1.2f, 0.1f).SetAutoKill(true).SetLoops(2, LoopType.Yoyo);
-
-                    //2차 (여기서 카드 등급에 따라 추가 효과 적용)
-                    this.transform.DOShakePosition(1.5f, 5, 30, 90, true, false).SetEase(Ease.InQuad).SetAutoKill(true);
-
-                    DOTween.Sequence().AppendInterval(0.4f).AppendCallback(() =>
-                    {
-                        OnCardRainbowDOTween();
-                        // _cardImage.transform.DOLocalMoveY(-100, 0.4f).SetEase(Ease.Linear).SetAutoKill(true);
-                        // _lineImage.transform.DOLocalMoveY(-100, 0.4f).SetEase(Ease.Linear).SetAutoKill(true);
-                        // spread.transform.DOLocalMoveY(-100, 0.4f).SetEase(Ease.Linear).SetAutoKill(true);
-                        // _shineEffect.transform.DOLocalMoveY(-100, 0.4f).SetEase(Ease.Linear).SetAutoKill(true);
-                        // _lineImage.transform.DOScale(new Vector3(1.8f, 0.4f, 1), 0.8f).SetAutoKill(true);
-
-
-
-
-                        _cardImage.transform.DOScale(1, 0.5f).SetAutoKill(true).OnComplete(() =>
-                        {
-                            _cardImage.transform.DOScale(new Vector3(0.73f, 1.09f, 1), 0.1f).SetEase(Ease.InOutQuad).SetAutoKill(true).SetDelay(0.4f);
-                            _lineImage.transform.DOScale(new Vector3(0.73f, 1.09f, 1), 0.1f).SetEase(Ease.InOutQuad).SetAutoKill(true).SetDelay(0.4f);
-
-                            // 위로 올라가기 
-                            _cardImage.transform.DOLocalMoveY(1000, 0.2f).SetEase(Ease.InBack).SetAutoKill(true).SetDelay(0.4f);
-                            _lineImage.transform.DOLocalMoveY(1000, 0.2f).SetEase(Ease.InBack).SetAutoKill(true).SetDelay(0.4f);
-                            spread.transform.DOLocalMoveY(1000, 0.2f).SetEase(Ease.InBack).SetAutoKill(true).SetDelay(0.4f);
-                            _shineEffect.transform.DOLocalMoveY(1000, 0.2f).SetEase(Ease.InBack).SetAutoKill(true).SetDelay(0.4f);
-
-                            DOTween.Sequence().AppendInterval(0.2f).AppendCallback(() =>
-                            {
-                                spread.transform.Find("Stars").GetComponent<ParticleImage>().loop = false;
-
-                            });
-
-                            DOTween.Sequence().AppendInterval(0.6f).AppendCallback(() =>
-                            {
-                                _cardImage.material.SetFloat("_GlowGlobal", 1f);
-                                _cardImage.material.SetFloat("_GradBlend", 0f);
-
-                                _cardImage.gameObject.SetActive(false);
-                                _lineImage.gameObject.SetActive(false);
-                            }).SetTarget(this);
-                        });
-                    }).SetTarget(this);
-
-
-
-
-
-                });
-
-
-                // Change the pivot to center bottom
-                // RectTransform rectTransform = this.GetComponent<RectTransform>();
-                // if (rectTransform != null)
-                // {
-                //     Vector2 currentPivot = rectTransform.pivot;
-                //     Vector2 newPivot = new Vector2(0.5f, 0f); // Center bottom pivot
-                //     Vector2 size = rectTransform.rect.size;
-                //     Vector2 deltaPosition = (newPivot - currentPivot) * size;
-                //     rectTransform.pivot = newPivot;
-                //     rectTransform.anchoredPosition += deltaPosition;
-                // }
-
-            }
-            DOTween.Sequence().AppendInterval(1f).AppendCallback(ShineAndSpreadCallback).SetTarget(this);
-            DOTween.Sequence().AppendInterval(2.5f).AppendCallback(() => AnimateGlowDOTween()).SetTarget(this);
-
-            //             DOTween.Sequence().AppendInterval(5f).AppendCallback(() => { }).SetTarget(this);
-        }
-
+        DOTween.Sequence().AppendInterval(_config.shineAndSpreadDelay).AppendCallback(() => PlayShineAndSpread(rainbowHighlight, powerBurst)).SetTarget(this);
+        DOTween.Sequence().AppendInterval(_config.glowAnimationDelay).AppendCallback(AnimateGlowDOTween).SetTarget(this);
     }
+
+    private static GameObject CreateAndParent(string path, Transform parent)
+    {
+        var prefab = ResourceManager.Instance.Load<GameObject>(path);
+        return Instantiate(prefab, parent);
+    }
+
+    private static void SetLocalIdentity(Transform t)
+    {
+        t.localPosition = Vector3.zero;
+        t.localScale = Vector3.one;
+    }
+
+    private void PlayCardRevealTweens()
+    {
+        transform.DOScale(_config.cardRevealScale, _config.cardScaleDuration).SetEase(Ease.OutQuad).SetAutoKill(true).SetDelay(_config.cardScaleDelay);
+        transform.DOLocalMove(Vector3.zero, _config.cardScaleDuration).SetEase(Ease.OutQuad).SetAutoKill(true).SetDelay(_config.cardScaleDelay);
+        transform.DOLocalRotate(new Vector3(0, 180, _config.cardTiltAngle), _config.cardRotateDuration).SetEase(Ease.Linear).SetLoops(2, LoopType.Yoyo).SetAutoKill(true).SetDelay(_config.cardScaleDelay);
+    }
+
+    /// <summary>
+    /// 카드 레인보우 및 버스트 애니메이션 재생
+    /// </summary>
+    private void PlayShineAndSpread(GameObject rainbowHighlight, GameObject powerBurst)
+    {
+        if (_shineEffect != null)
+            _shineEffect.gameObject.SetActive(true);
+
+        var spread = CreateAndParent(_config.spreadEffectName, transform);
+        spread.transform.localPosition = Vector3.zero;
+
+        var lightRays = CreateAndParent(_config.lightRaysName, _cardImage.transform);
+        SetLocalIdentity(lightRays.transform);
+
+        float shineScale = 0f;
+        DOTween.To(() => shineScale, x => { shineScale = x; _shineEffect.scale = x; }, _config.shineScaleEnd, _config.shineScaleDuration).SetTarget(this);
+
+        spread.transform.DOScale(Vector3.one, _config.spreadScaleDuration).From(Vector3.zero).SetAutoKill(true).OnComplete(() =>
+        {
+            var starsParticle = spread.transform.Find("Stars").GetComponent<ParticleImage>();
+            _config.ApplySpreadParticleByTier(starsParticle, Tier);
+            starsParticle.gravityEnabled = true;
+        });
+
+        transform.DOShakePosition(_config.shake1Duration, 5, 12, 90, true, false).SetEase(Ease.InQuad).SetAutoKill(true).OnComplete(() =>
+        {
+            ShowRainbowAndPowerBurst(rainbowHighlight, powerBurst);
+            _cardImage.transform.DOScale(_config.popScale, _config.popDuration).SetAutoKill(true).SetLoops(2, LoopType.Yoyo);
+            _lineImage.transform.DOScale(_config.popScale, _config.popDuration).SetAutoKill(true).SetLoops(2, LoopType.Yoyo);
+            _shineEffect.transform.DOScale(_config.popScale, _config.popDuration).SetAutoKill(true).SetLoops(2, LoopType.Yoyo);
+
+            transform.DOShakePosition(_config.shake2Duration, 5, 30, 90, true, false).SetEase(Ease.InQuad).SetAutoKill(true);
+
+            DOTween.Sequence().AppendInterval(_config.rainbowShowDelay).AppendCallback(() => PlayCardRainbowAndExit(spread)).SetTarget(this);
+        });
+    }
+
+    private void ShowRainbowAndPowerBurst(GameObject rainbowHighlight, GameObject powerBurst)
+    {
+        rainbowHighlight.SetActive(true);
+        powerBurst.SetActive(true);
+        string stateName = _config.GetRainbowAnimStateForTier(Tier);
+        rainbowHighlight.GetComponent<Animator>().Play(stateName);
+        rainbowHighlight.GetComponent<Image>().DOFade(1f, _config.rainbowFadeDuration).From(0f).SetAutoKill(true);
+    }
+
+    private void PlayCardRainbowAndExit(GameObject spread)
+    {
+        OnCardRainbowDOTween();
+
+        _cardImage.transform.DOScale(1f, _config.cardScaleBackDuration).SetAutoKill(true).OnComplete(() =>
+        {
+            _cardImage.transform.DOScale(new Vector3(_config.cardSquashX, _config.cardSquashY, 1f), _config.cardSquashDuration).SetEase(Ease.InOutQuad).SetAutoKill(true).SetDelay(_config.cardSquashDelay);
+            _lineImage.transform.DOScale(new Vector3(_config.cardSquashX, _config.cardSquashY, 1f), _config.cardSquashDuration).SetEase(Ease.InOutQuad).SetAutoKill(true).SetDelay(_config.cardSquashDelay);
+
+            _cardImage.transform.DOLocalMoveY(_config.cardExitY, _config.cardExitDuration).SetEase(Ease.InBack).SetAutoKill(true).SetDelay(_config.cardSquashDelay);
+            _lineImage.transform.DOLocalMoveY(_config.cardExitY, _config.cardExitDuration).SetEase(Ease.InBack).SetAutoKill(true).SetDelay(_config.cardSquashDelay);
+            spread.transform.DOLocalMoveY(_config.cardExitY, _config.cardExitDuration).SetEase(Ease.InBack).SetAutoKill(true).SetDelay(_config.cardSquashDelay);
+            _shineEffect.transform.DOLocalMoveY(_config.cardExitY, _config.cardExitDuration).SetEase(Ease.InBack).SetAutoKill(true).SetDelay(_config.cardSquashDelay);
+
+            DOTween.Sequence().AppendInterval(_config.starsLoopOffDelay).AppendCallback(() =>
+            {
+                spread.transform.Find("Stars").GetComponent<ParticleImage>().loop = false;
+            });
+
+            DOTween.Sequence().AppendInterval(_config.hideCardDelay).AppendCallback(() =>
+            {
+                _cardImage.material.SetFloat(MaterialProps.GlowGlobal, 1f);
+                _cardImage.material.SetFloat(MaterialProps.GradBlend, 0f);
+                _cardImage.gameObject.SetActive(false);
+                _lineImage.gameObject.SetActive(false);
+            }).SetTarget(this);
+        });
+    }
+
+    #endregion
+
+    #region Material / DOTween Animation Methods
 
     private void AnimateGlowDOTween()
     {
-        _cardImage.material.SetFloat("_GlowGlobal", 1f);
-        DOVirtual.Float(1f, 5.3f, 3f, v => _cardImage.material.SetFloat("_GlowGlobal", v)).SetTarget(this);
+        _cardImage.material.SetFloat(MaterialProps.GlowGlobal, _config.glowFrom);
+        DOVirtual.Float(_config.glowFrom, _config.glowTo, _config.glowDuration, v => _cardImage.material.SetFloat(MaterialProps.GlowGlobal, v)).SetTarget(this);
     }
 
     private void AnimateRoundWaveStrengthDOTween()
     {
-        _cardImage.material.SetFloat("_RoundWaveStrength", 0f);
+        _cardImage.material.SetFloat(MaterialProps.RoundWaveStrength, 0f);
         var seq = DOTween.Sequence().SetTarget(this);
-        seq.Append(DOVirtual.Float(0f, 0.1f, 0.2f, v => _cardImage.material.SetFloat("_RoundWaveStrength", v)));
-        seq.Append(DOVirtual.Float(0.1f, 0f, 0.2f, v => _cardImage.material.SetFloat("_RoundWaveStrength", v)));
-        seq.OnComplete(() => _cardImage.material.SetFloat("_RoundWaveStrength", 0f));
+        seq.Append(DOVirtual.Float(0f, _config.roundWavePeak, _config.roundWaveDuration, v => _cardImage.material.SetFloat(MaterialProps.RoundWaveStrength, v)));
+        seq.Append(DOVirtual.Float(_config.roundWavePeak, 0f, _config.roundWaveDuration, v => _cardImage.material.SetFloat(MaterialProps.RoundWaveStrength, v)));
+        seq.OnComplete(() => _cardImage.material.SetFloat(MaterialProps.RoundWaveStrength, 0f));
     }
 
     private void AnimateShineEffectWithDOTween()
     {
-        _cardImage.material.SetFloat("_ShineLocation", 1f);
-        _cardImage.material.SetFloat("_ShineGlow", 1f);
-        DOVirtual.Float(0f, 1f, 0.3f, v => _cardImage.material.SetFloat("_ShineLocation", v))
+        _cardImage.material.SetFloat(MaterialProps.ShineLocation, 1f);
+        _cardImage.material.SetFloat(MaterialProps.ShineGlow, 1f);
+        DOVirtual.Float(0f, 1f, _config.shineLocationDuration, v => _cardImage.material.SetFloat(MaterialProps.ShineLocation, v))
             .SetTarget(this)
             .OnComplete(() =>
             {
-                _cardImage.material.SetFloat("_ShineLocation", 0f);
-                _cardImage.material.SetFloat("_ShineGlow", 0f);
+                _cardImage.material.SetFloat(MaterialProps.ShineLocation, 0f);
+                _cardImage.material.SetFloat(MaterialProps.ShineGlow, 0f);
             });
     }
 
     private void ChromAberrAmountDOTween()
     {
-        _cardImage.material.SetFloat("_ChromAberrAmount", 0f);
+        _cardImage.material.SetFloat(MaterialProps.ChromAberrAmount, 0f);
         var seq = DOTween.Sequence().SetTarget(this);
-        seq.Append(DOVirtual.Float(0f, 1f, 0.2f, v => _cardImage.material.SetFloat("_ChromAberrAmount", v)));
-        seq.Append(DOVirtual.Float(1f, 0f, 0.2f, v => _cardImage.material.SetFloat("_ChromAberrAmount", v)));
-        seq.OnComplete(() => _cardImage.material.SetFloat("_ChromAberrAmount", 0f));
+        seq.Append(DOVirtual.Float(0f, 1f, _config.chromAberrDuration, v => _cardImage.material.SetFloat(MaterialProps.ChromAberrAmount, v)));
+        seq.Append(DOVirtual.Float(1f, 0f, _config.chromAberrDuration, v => _cardImage.material.SetFloat(MaterialProps.ChromAberrAmount, v)));
+        seq.OnComplete(() => _cardImage.material.SetFloat(MaterialProps.ChromAberrAmount, 0f));
     }
 
+    private void OnCardRainbowDOTween()
+    {
+        _cardImage.material.SetFloat(MaterialProps.GradBlend, 0f);
+        _cardImage.material.SetFloat(MaterialProps.HitEffectBlend, 0f);
+        float targetGrad = Tier == 1 ? _config.gradBlendLegend : _config.gradBlendNormal;
+        if (Tier == 1)
+            DOVirtual.Float(0f, targetGrad, _config.gradBlendDuration, v => _cardImage.material.SetFloat(MaterialProps.GradBlend, v)).SetTarget(this);
+        else
+            DOVirtual.Float(0f, _config.gradBlendNormal, _config.gradBlendDuration, v => _cardImage.material.SetFloat(MaterialProps.HitEffectBlend, v)).SetTarget(this);
+    }
+
+    #endregion
+
+    #region Public API
 
     public void FadeOutImage()
     {
-        _cardImage.DOFade(0.4f, 0.3f).SetAutoKill(true);
-        _lineImage.DOFade(0f, 0.3f).SetAutoKill(true);
+        if (_config == null) return;
+        _cardImage.DOFade(_config.fadeOutAlpha, _config.fadeOutDuration).SetAutoKill(true);
+        _lineImage.DOFade(0f, _config.fadeOutDuration).SetAutoKill(true);
     }
-
-    public void OnCardRainbowDOTween()
-    {
-        _cardImage.material.SetFloat("_GradBlend", 0f);
-        _cardImage.material.SetFloat("_HitEffectBlend", 0f);
-
-        if (Tier == 1)
-            DOVirtual.Float(0f, 0.333f, 0.5f, v => _cardImage.material.SetFloat("_GradBlend", v)).SetTarget(this);
-        else
-            DOVirtual.Float(0f, 0.1f, 0.5f, v => _cardImage.material.SetFloat("_HitEffectBlend", v)).SetTarget(this);
-    }
-
 
     public void HideCardName()
     {
-        _CardName.DOFade(0f, 0.3f).SetAutoKill(true);
+        if (_config == null) return;
+        _CardName.DOFade(0f, _config.fadeOutDuration).SetAutoKill(true);
     }
 
-
+    #endregion
 }
