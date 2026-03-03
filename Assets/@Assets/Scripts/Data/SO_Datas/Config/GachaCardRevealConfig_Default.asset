@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0047256013d4792af449a168929f47, type: 3}
+  m_Name: GachaCardRevealConfig_Default
+  m_EditorClassIdentifier: 
+  rainbowHighlightPath: RactangleRainbowHighlight
+  powerBurstPath: GachaPowerBurst
+  spreadEffectPath: GachaSpreadEffect
+  lightRaysPath: GachaLightRays
+  rainbowAnimStateLegend: RactangleRainbowAniLegend
+  rainbowAnimStateGood: RactangleRainbowAniGood
+  rainbowAnimStateNormal: RactangleRainbowAniNormal
+  cardScaleDelay: 0.4
+  cardScaleDuration: 0.6
+  cardRotateDuration: 0.3
+  shineAndSpreadDelay: 1
+  glowAnimationDelay: 2.5
+  spreadScaleDuration: 1.5
+  shake1Duration: 1
+  shake2Duration: 1.5
+  rainbowShowDelay: 0.4
+  cardScaleBackDuration: 0.5
+  cardSquashDuration: 0.1
+  cardSquashDelay: 0.4
+  cardExitY: 1000
+  cardExitDuration: 0.2
+  starsLoopOffDelay: 0.2
+  hideCardDelay: 0.6
+  cardRevealScale: 1.3
+  cardTiltAngle: 10
+  shineScaleEnd: 10
+  shineScaleDuration: 0.5
+  popScale: 1.2
+  popDuration: 0.1
+  cardSquashX: 0.73
+  cardSquashY: 1.09
+  glowFrom: 1
+  glowTo: 5.3
+  glowDuration: 3
+  roundWavePeak: 0.1
+  roundWaveDuration: 0.2
+  chromAberrDuration: 0.2
+  shineLocationDuration: 0.3
+  rainbowFadeDuration: 0.1
+  gradBlendLegend: 0.333
+  gradBlendNormal: 0.1
+  gradBlendDuration: 0.5
+  fadeOutAlpha: 0.4
+  fadeOutDuration: 0.3
+  spreadParticleFPSLegend: 3
+  spreadParticleStartFrameGood: 4
+  spreadParticleStartFrameNormal: 2

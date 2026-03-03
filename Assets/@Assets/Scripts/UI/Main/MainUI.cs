@@ -24,44 +24,25 @@ public class MainUI : BaseUI
         BindText(typeof(Texts));
     }
 
-
+#if UNITY_EDITOR
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // var result = BackendManager.Instance.DoCharacterGacha(1);
-            // if (result.IsSuccess)
-            // {
-            //     foreach (var character in result.Data)
-            //     {
-            //         Debug.Log(character.CharacterId);
-            //     }
-            // }
-            // else
-            // {
-            //     Debug.Log(result.Message);
-            // }
-            GachaPopupUI gachaPopupUI = UIManager.Instance.ShowPopupUI<GachaPopupUI>();
-            // gachaPopupUI.Initialize(new List<CharacterChart>()
-            // {
-            //     new CharacterChart()
-            //     {
-            //         CharacterId = "loui",
-            //         Grade = CharacterGrade.Legendary,
-            //     },
-            //     new CharacterChart()
-            //     {
-            //         CharacterId = "lucius",
-            //         Grade = CharacterGrade.Rare,
-            //     },
-            //     new CharacterChart()
-            //     {
-            //         CharacterId = "lime",
-            //         Grade = CharacterGrade.Epic,
-            //     }
-            // });
+            var result = BackendManager.Instance.DoCharacterGacha(5);
+            if (result.IsSuccess)
+            {
+                GachaPopupUI gachaPopupUI = UIManager.Instance.ShowPopupUI<GachaPopupUI>();
+                gachaPopupUI.Initialize(result.Data);
+            }
+            else
+            {
+                Debug.Log(result.Message);
+            }
         }
     }
+#endif
+
 
     private void Start()
     {
