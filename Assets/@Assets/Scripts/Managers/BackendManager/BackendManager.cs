@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using LitJson;
 using UnityEngine;
 
@@ -36,7 +37,7 @@ public partial class BackendManager : MonoBehaviour
     public void InitGameData()
     {
         // 게임 데이터 초기화
-        GameDataManager.Instance.Store.InitializeGameData();
+        GameDataManager.Instance.Store.InitializeGameData().Forget();
         // 게임 데이터 핸들러 초기화
         GameDataHandler.EnsureInitialized();
     }

@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Holder
   m_GUID: d212e844d05eb42e48ebc825c6421267
   m_SerializeEntries:
+  - m_GUID: 0f95d0ec34e754bd0aa68c032f7c40a4
+    m_Address: RactangleRainbowHighlight
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 47ef8f28c618e4d49978dfc4334f6b4a
     m_Address: InventoryItemHolder
     m_ReadOnly: 0
@@ -23,6 +28,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 79caf0dd081e5462c909f29320289208
     m_Address: GlobalStarHolder
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc4a8abfcf7174b1984862374cae4720
+    m_Address: GachaSpreadEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e84f731580c1b42cb85043dedf056e02
+    m_Address: GachaPowerBurst
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

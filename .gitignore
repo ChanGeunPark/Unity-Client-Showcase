@@ -76,25 +76,16 @@ crashlytics-build.properties
 
 .utmp/
 .fake
-Assets/CartoonVFX9X/BundleSpriteSheetEffect/*
-Assets/2D Explosion VFX/*
-Assets/2D Explosion VFX.meta
-
+.vscode/
 mono_crash.*
 CrashlyticsSettings.*
 
-HotReload*
-Assets/Plugins/DarkTonic/*
-Assets/CartoonVFX9X/Effect Pack/*.unitypackage.meta
-Assets/Lana Studio/Environment VFX pack/Upgrade for URP/*.unitypackage.meta
-.DS_Store
-Assets/Plugins/CodeStage/AntiCheatToolkit/Integration/BehaviorDesigner.unitypackage.meta
-Assets/Plugins/CodeStage/AntiCheatToolkit/Integration/PlayMaker.unitypackage.meta
-Assets/Plugins/Febucci/Text Animator/Extra/Typewriter Sound - Package.unitypackage.meta
-Assets/Plugins/Febucci/Text Animator/Integrations/PlayMaker - Integration.unitypackage.meta
-Assets/Plugins/Febucci/Text Animator/Integrations/Visual Scripting - Integration.unitypackage.meta
-.DS_Store
-.qodo
+Assets/ChocDino/
+Assets/Plugins/AllIn1SpriteShader/
+Assets/Plugins/Demigiant/DOTweenPro/
+Assets/Layer Lab/
+Assets/AssetKits/
+Assets/Cartoon Coffee/
 
 # Unity Visual Scripting generated files
 Assets/Unity.VisualScripting.Generated/

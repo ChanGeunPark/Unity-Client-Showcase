@@ -89,6 +89,25 @@ public class GachaPopupUI : BasePopupUI
     // public List<GachaStep3> _gachaStep3List;
 
 
+    protected override void OnDestroy()
+    {
+        if (circularScrollingList != null && circularScrollingList.ListSetting != null)
+            circularScrollingList.ListSetting.OnMovementEnd.RemoveListener(OnScrollEnded);
+        if (circularScrollingList != null)
+        {
+            foreach (var item in circularScrollingList.ListBoxes)
+            {
+                if (item != null)
+                {
+                    var holder = item.GetComponent<GachaIntroHolder>();
+                    if (holder != null)
+                        holder.OnClick -= OnItemClicked;
+                }
+            }
+        }
+        base.OnDestroy();
+    }
+
     private void Awake()
     {
         BindObject(typeof(Objects));
@@ -114,15 +133,18 @@ public class GachaPopupUI : BasePopupUI
     }
 
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Close();
+        }
+    }
+
     private void Start()
     {
         List<CharacterChart> gachaObjectList = new List<CharacterChart>()
         {
-            new CharacterChart()
-            {
-                Grade = CharacterGrade.Legendary,
-                CharacterId = "loui",
-            },
             new CharacterChart()
             {
                 Grade = CharacterGrade.Rare,
@@ -174,31 +196,42 @@ public class GachaPopupUI : BasePopupUI
 
         InitAnimation();
 
-
-        DelayAction(() =>
+        DOTween.Sequence().AppendInterval(1f).AppendCallback(() =>
         {
             _step1.gameObject.SetActive(true);
             GetImage(Images.Step1Background).DOFade(0.95f, 0.5f).From(0).SetEase(Ease.Linear).SetAutoKill(true);
             GetObject(Objects.CircularWithAligning).gameObject.SetActive(true);
 
-            // 카드 리스트
+            // 카드 리스트 (CircularScrollingList는 활성화된 다음 프레임에 Start()에서 초기화되므로, 리스트 박스 구독은 1프레임 뒤에 수행)
             circularScrollingList = GetObject(Objects.CircularWithAligning).GetComponent<CircularScrollingList>();
             listBank = GetObject(Objects.ListBank).GetComponent<ListBank>();
             _smokeAnimation.gameObject.SetActive(false);
 
+            // 재진입 시 중복 리스너 방지: 기존 구독 제거 후 추가
+            circularScrollingList.ListSetting.OnMovementEnd.RemoveListener(OnScrollEnded);
             circularScrollingList.ListSetting.OnMovementEnd.AddListener(OnScrollEnded);
             currentItemCount = circularScrollingList.ListBank.GetContentCount();
 
-            foreach (var item in circularScrollingList.ListBoxes)
-            {
-                item.GetComponent<GachaIntroHolder>().OnClick += OnItemClicked;
-
-                item.GetComponent<GachaIntroHolder>().Tier = _tier;
-            }
-
-        }, 1f);
+            StartCoroutine(SubscribeToHoldersNextFrame());
+        });
     }
 
+    private IEnumerator SubscribeToHoldersNextFrame()
+    {
+        yield return null; // CircularScrollingList.Start() → Initialize() → SetListBoxes() 실행 후 ListBoxes가 채워지도록 1프레임 대기
+        if (circularScrollingList == null) yield break;
+        foreach (var item in circularScrollingList.ListBoxes)
+        {
+            if (item == null) continue;
+            var holder = item.GetComponent<GachaIntroHolder>();
+            if (holder != null)
+            {
+                holder.OnClick -= OnItemClicked;
+                holder.OnClick += OnItemClicked;
+                holder.Tier = _tier;
+            }
+        }
+    }
 
     private void InitAnimation()
     {
@@ -332,17 +365,17 @@ public class GachaPopupUI : BasePopupUI
             var starPosition = GetObject(Objects.Bell).transform.position;
             starPosition.y += -100;
 
+
+            Debug.Log("Shooting Star Move Start");
             // 별똥별 떨어지는 애니메이션
-            GetObject(Objects.ShootingStar).transform.DOMove(starPosition, 1f).SetEase(Ease.OutQuad).SetAutoKill(true).OnComplete(() =>
+            GetObject(Objects.ShootingStar).transform.DOMove(starPosition, 1f).SetEase(Ease.OutQuad).OnComplete(() =>
             {
+                Debug.Log("Bell Animation Start");
                 GetObject(Objects.ShootingStar).GetComponent<ParticleImage>().lifetime = 0;
                 GetObject(Objects.ShootingStarEffect).gameObject.SetActive(true);
+                GetObject(Objects.ShootingStar).transform.Find("ShootingStarImage").gameObject.SetActive(false);
 
-                GetObject(Objects.ShootingStarIcon).transform.DOScale(0, 0.2f).SetEase(Ease.InOutQuad).SetAutoKill(true);
-
-
-                GetObject(Objects.ShootingStar).transform.Find("ShootingStarImage").GetComponent<Image>().DOFade(0, 0.2f).SetAutoKill(true);
-
+                Debug.Log("Bell Animation Start2");
                 // 별똥별 파티클 끄기
                 DelayAction(() =>
                 {
@@ -350,8 +383,13 @@ public class GachaPopupUI : BasePopupUI
                     GetObject(Objects.ShootingStarEffect).SetActive(false);
                 }, 2f);
 
+
+                Debug.Log("Bell Animation Start3");
                 // 종 애니메이션 재생
-                GetObject(Objects.Bell).GetComponent<DOTweenAnimation>().DOPlayForward();
+                var bellAnimationSequence = DOTween.Sequence().SetTarget(GetObject(Objects.Bell));
+                bellAnimationSequence.Append(GetObject(Objects.Bell).transform.DOLocalRotate(new Vector3(0, 0, -25), 1f).SetEase(Ease.InOutQuad));
+                bellAnimationSequence.Append(GetObject(Objects.Bell).transform.DOLocalRotate(new Vector3(0, 0, 25), 1f).SetEase(Ease.InOutQuad));
+                bellAnimationSequence.SetLoops(-1, LoopType.Yoyo).SetAutoKill(true);
 
                 // MainGroup 흔들기 애니메이션
                 GetObject(Objects.MainGroup).transform.DOShakePosition(0.5f, 10, 23, 90, true, true).SetEase(Ease.InQuad).SetAutoKill(true);
