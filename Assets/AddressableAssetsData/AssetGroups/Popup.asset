@@ -26,6 +26,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainAsset
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0c438b6a06b944ae8d5f0d275802304
+    m_Address: GachaPopupUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a99d21fee4c374034941ca178132ef9c, type: 2}
   m_SchemaSet:

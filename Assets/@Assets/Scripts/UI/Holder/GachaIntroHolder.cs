@@ -20,7 +20,7 @@ public class GachaIntroHolder : ListBox, IPointerClickHandler
     [SerializeField] private Image _lineImage;
     [SerializeField] private TextMeshProUGUI _CardName;
 
-
+    private Material _cardImageMaterialInstance;
     private bool _isClickable = true;
 
     public int Tier;
@@ -37,6 +37,9 @@ public class GachaIntroHolder : ListBox, IPointerClickHandler
 
         if (_cardImage != null)
         {
+            // 공용 머티리얼과 분리하기 위해 이 카드 전용 인스턴스 생성
+            _cardImageMaterialInstance = new Material(_cardImage.material);
+            _cardImage.material = _cardImageMaterialInstance;
             _cardImage.material.SetFloat("_GlowGlobal", 1f);
             _cardImage.material.SetFloat("_RoundWaveStrength", 0f);
             _cardImage.material.SetFloat("_ChromAberrAmount", 0f);
@@ -52,6 +55,12 @@ public class GachaIntroHolder : ListBox, IPointerClickHandler
             _smokeAnimation.gameObject.SetActive(true);
     }
 
+    private void OnDestroy()
+    {
+        if (_cardImageMaterialInstance != null && Application.isPlaying)
+            Destroy(_cardImageMaterialInstance);
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
 
@@ -62,14 +71,11 @@ public class GachaIntroHolder : ListBox, IPointerClickHandler
 
         _isClickable = false;
 
-        Debug.Log("OnPointerClick: " + Tier);
         if (_cardImage != null)
         {
             OnClick?.Invoke(this);
 
-            GameObject energySpread = ResourceManager.Instance.Load<GameObject>("SeowonSpreadEffect");
-            GameObject spread = Instantiate(energySpread, this.transform);
-            spread.transform.localPosition = Vector3.zero;
+
 
 
 
@@ -82,26 +88,22 @@ public class GachaIntroHolder : ListBox, IPointerClickHandler
             rainbowHighlight.transform.localPosition = Vector3.zero;
             rainbowHighlight.transform.localScale = Vector3.one;
 
-            GameObject seowonLightRays = ResourceManager.Instance.Load<GameObject>("SeowonLightRays");
-            GameObject lightRays = Instantiate(seowonLightRays, _cardImage.transform);
-            lightRays.transform.localPosition = Vector3.zero;
-            lightRays.transform.localScale = Vector3.one;
 
 
 
-            GameObject powerBurstV8 = ResourceManager.Instance.Load<GameObject>("PowerBurstV8");
+
+            GameObject powerBurstV8 = ResourceManager.Instance.Load<GameObject>("GachaPowerBurst");
             GameObject powerBurst = Instantiate(powerBurstV8, this.transform);
             powerBurst.transform.localPosition = Vector3.zero;
             powerBurst.transform.localScale = Vector3.one;
 
             rainbowHighlight.SetActive(false);
-            lightRays.SetActive(false);
             powerBurst.SetActive(false);
 
 
-            this.transform.DOScale(1.3f, 0.6f).SetEase(Ease.OutQuad).SetAutoKill(true).SetDelay(0.4f);
-            this.transform.DOLocalMove(new Vector3(0, 0, 0), 0.6f).SetEase(Ease.OutQuad).SetAutoKill(true).SetDelay(0.4f);
-            this.transform.DOLocalRotate(new Vector3(0, 180, 10), 0.3f).SetEase(Ease.Linear).SetLoops(2, LoopType.Yoyo).SetAutoKill(true).SetDelay(0.4f);
+            transform.DOScale(1.3f, 0.6f).SetEase(Ease.OutQuad).SetAutoKill(true).SetDelay(0.4f);
+            transform.DOLocalMove(new Vector3(0, 0, 0), 0.6f).SetEase(Ease.OutQuad).SetAutoKill(true).SetDelay(0.4f);
+            transform.DOLocalRotate(new Vector3(0, 180, 10), 0.3f).SetEase(Ease.Linear).SetLoops(2, LoopType.Yoyo).SetAutoKill(true).SetDelay(0.4f);
 
 
 
@@ -112,9 +114,21 @@ public class GachaIntroHolder : ListBox, IPointerClickHandler
 
             void ShineAndSpreadCallback()
             {
+                GameObject energySpread = ResourceManager.Instance.Load<GameObject>("GachaSpreadEffect");
+                GameObject spread = Instantiate(energySpread, this.transform);
+                spread.transform.localPosition = Vector3.zero;
+
+
+                GameObject seowonLightRays = ResourceManager.Instance.Load<GameObject>("GachaLightRays");
+                GameObject lightRays = Instantiate(seowonLightRays, _cardImage.transform);
+                lightRays.transform.localPosition = Vector3.zero;
+                lightRays.transform.localScale = Vector3.one;
+
+
                 float shineScale = 0f;
                 DOTween.To(() => shineScale, x => { shineScale = x; _shineEffect.scale = x; }, 10f, 0.5f).SetTarget(this);
-                lightRays.SetActive(true);
+
+
 
                 spread.transform.DOScale(Vector3.one, 1.5f).From(Vector3.zero).SetAutoKill(true).OnComplete(() =>
                  {
@@ -225,8 +239,7 @@ public class GachaIntroHolder : ListBox, IPointerClickHandler
                 // }
 
             }
-            DOTween.Sequence().AppendInterval(0f).AppendCallback(ShineAndSpreadCallback).SetTarget(this);
-
+            DOTween.Sequence().AppendInterval(1f).AppendCallback(ShineAndSpreadCallback).SetTarget(this);
             DOTween.Sequence().AppendInterval(2.5f).AppendCallback(() => AnimateGlowDOTween()).SetTarget(this);
 
             //             DOTween.Sequence().AppendInterval(5f).AppendCallback(() => { }).SetTarget(this);

@@ -29,6 +29,8 @@ public class InventoryPopupUI : BasePopupUI
 
         AddButtonListener(Buttons.BackgroundButton, ClosePopup);
         AddButtonListener(Buttons.CloseButton, ClosePopup);
+
+        GameDataManager.Instance.EventBus.OnInventoryChanged += OnInventoryChanged;
     }
 
     protected override void OnDestroy()
@@ -38,6 +40,19 @@ public class InventoryPopupUI : BasePopupUI
     }
 
     private void Start()
+    {
+        RefreshUI();
+    }
+
+    private void OnInventoryChanged(GameDataEvent evt)
+    {
+        if (evt.Kind == GameDataEventKind.MaterialItemsChanged)
+        {
+            RefreshUI();
+        }
+    }
+
+    private void RefreshUI()
     {
         Util.DestroyChilds(GetObject(Objects.InventoryItemList));
 

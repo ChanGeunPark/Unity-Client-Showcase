@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
@@ -98,7 +99,7 @@ public class GameDataStore
 
     private bool _isInitialized = false;
 
-    public async void InitializeGameData()
+    public UniTask InitializeGameData()
     {
         if (_isInitialized)
         {
@@ -118,6 +119,7 @@ public class GameDataStore
         }
 
         _isInitialized = true;
+        return UniTask.CompletedTask;
     }
 
 

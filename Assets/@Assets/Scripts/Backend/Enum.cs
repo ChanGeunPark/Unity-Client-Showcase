@@ -26,8 +26,8 @@ public enum CurrencyType
 public enum CharacterGrade
 {
   None,
-  Common,
-  Rare,
-  Epic,
   Legendary,
+  Epic,
+  Rare,
+  Common,
 }

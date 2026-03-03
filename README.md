@@ -35,41 +35,43 @@
 
 ## 2. 폴더 구조
 
-핵심 코드는 **`Assets/@Assets`** 아래에 있습니다.
+핵심 코드는 `**Assets/@Assets*`* 아래에 있습니다.
 
-| 경로                               | 역할                                                                                                                          |
-| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| **Scripts/Backend**                | 서버/데이터 연동 역할. `Controller`(API 호출·데이터 갱신), `GameData`(Store·EventBus·비교), `Services`(테이블/비즈니스 로직). |
-| **Scripts/Controller**             | 씬·오브젝트 제어용 (이미지, 유틸 등). Backend와 구분해 “화면/입력” 쪽 로직.                                                   |
-| **Scripts/Data**                   | 데이터 정의·처리. `Model`(테이블 구조), `Handler`(저장/로드), `Items`(에셋), `SO`(ScriptableObject 스크립트).                 |
-| **Scripts/Managers**               | 전역 진입점. GameDataManager(Store+EventBus), UIManager, BackendManager(폴더로 분리), ResourceManager, LocalDataManager.      |
-| **Scripts/UI**                     | UI 전용. `Core`(BaseUI, BasePopupUI), `Holder`, `Main`, `Popup` — Prefabs/UI와 이름을 맞춰 두었습니다.                        |
-| **Scripts/Editor**                 | Unity 에디터 확장.                                                                                                            |
-| **Prefabs/UI**                     | Holder, Popup 등 UI 프리팹. Scripts/UI와 1:1 대응.                                                                            |
-| **Sprites/Sprite_UI/HUD**          | HUD용 스프라이트.                                                                                                             |
-| **Scenes, Resources, Audio, Font** | 씬·리소스·사운드·폰트.                                                                                                        |
+
+| 경로                                 | 역할                                                                                                             |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Scripts/Backend**                | 서버/데이터 연동 역할. `Controller`(API 호출·데이터 갱신), `GameData`(Store·EventBus·비교), `Services`(테이블/비즈니스 로직).             |
+| **Scripts/Controller**             | 씬·오브젝트 제어용 (이미지, 유틸 등). Backend와 구분해 “화면/입력” 쪽 로직.                                                             |
+| **Scripts/Data**                   | 데이터 정의·처리. `Model`(테이블 구조), `Handler`(저장/로드), `Items`(에셋), `SO`(ScriptableObject 스크립트).                        |
+| **Scripts/Managers**               | 전역 진입점. GameDataManager(Store+EventBus), UIManager, BackendManager(폴더로 분리), ResourceManager, LocalDataManager. |
+| **Scripts/UI**                     | UI 전용. `Core`(BaseUI, BasePopupUI), `Holder`, `Main`, `Popup` — Prefabs/UI와 이름을 맞춰 두었습니다.                      |
+| **Scripts/Editor**                 | Unity 에디터 확장.                                                                                                  |
+| **Prefabs/UI**                     | Holder, Popup 등 UI 프리팹. Scripts/UI와 1:1 대응.                                                                    |
+| **Sprites/Sprite_UI/HUD**          | HUD용 스프라이트.                                                                                                    |
+| **Scenes, Resources, Audio, Font** | 씬·리소스·사운드·폰트.                                                                                                  |
+
 
 ---
 
 ## 3. 핵심 클래스 (읽어보면 좋은 순서)
 
-1. **`GameDataEventBus`** (`Scripts/Backend/GameData/`)
-   - 데이터 변경 이벤트 발행. Batch(BeginBatch~EndBatch)로 한 번에 알림.
-2. **`GameDataStore`** (`Scripts/Backend/GameData/`)
-   - 인벤토리/통화 등 테이블 보관. 로직 없이 보관만.
-3. **`GameDataManager`** (`Scripts/Managers/`)
-   - Store + EventBus 진입점. Singleton, 이벤트 포워딩.
-4. **`BackendManager`** (`Scripts/Managers/BackendManager/`)
-   - 백엔드 연동·테이블 제공. 부분 클래스로 기능 분리.
-5. **`UIManager`** (`Scripts/Managers/`)
-   - 팝업/UI 생명주기, EventBus 구독 연동.
-6. **`BackendChart`** (`Scripts/Backend/Services/`)
-   - CSV 차트 로드. `GetChartFromLocal(chartName)` → Resources/Charts/{chartName}.csv 로드 후 JsonData 변환.
-7. **`BackendChartHelper`** (`Scripts/Backend/Services/Helper/`)
-   - 차트 파싱: `LoadCharacterChart`(Name, Grade), `LoadCharacterGachaProbability`(CharacterId, Probability → Dictionary<string, float>).
-8. **`GachaCtrl`** (`Scripts/Backend/Controller/`)
-   - `DoCharacterGacha(gachaCount)`: Store의 GachaProbabilityData 가중치로 랜덤 뽑기, CharacterChart와 매칭해 리스트 반환.
-9. **`ResourceManager`** 스프라이트: `LoadSpriteByKeyAsync(key)`로 캐시 로드, `ReleaseSpriteHandlesByKey()`로 키 기반 스프라이트만 해제. 씬 전환 시 해제 호출 권장.
+1. `**GameDataEventBus`** (`Scripts/Backend/GameData/`)
+  - 데이터 변경 이벤트 발행. Batch(BeginBatch~EndBatch)로 한 번에 알림.
+2. `**GameDataStore**` (`Scripts/Backend/GameData/`)
+  - 인벤토리/통화 등 테이블 보관. 로직 없이 보관만.
+3. `**GameDataManager**` (`Scripts/Managers/`)
+  - Store + EventBus 진입점. Singleton, 이벤트 포워딩.
+4. `**BackendManager**` (`Scripts/Managers/BackendManager/`)
+  - 백엔드 연동·테이블 제공. 부분 클래스로 기능 분리.
+5. `**UIManager**` (`Scripts/Managers/`)
+  - 팝업/UI 생명주기, EventBus 구독 연동.
+6. `**BackendChart**` (`Scripts/Backend/Services/`)
+  - CSV 차트 로드. `GetChartFromLocal(chartName)` → Resources/Charts/{chartName}.csv 로드 후 JsonData 변환.
+7. `**BackendChartHelper**` (`Scripts/Backend/Services/Helper/`)
+  - 차트 파싱: `LoadCharacterChart`(Name, Grade), `LoadCharacterGachaProbability`(CharacterId, Probability → Dictionary<string, float>).
+8. `**GachaCtrl**` (`Scripts/Backend/Controller/`)
+  - `DoCharacterGacha(gachaCount)`: Store의 GachaProbabilityData 가중치로 랜덤 뽑기, CharacterChart와 매칭해 리스트 반환.
+9. `**ResourceManager**` 스프라이트: `LoadSpriteByKeyAsync(key)`로 캐시 로드, `ReleaseSpriteHandlesByKey()`로 키 기반 스프라이트만 해제. 씬 전환 시 해제 호출 권장.
 
 ---
 
@@ -93,3 +95,4 @@
 - UniTask (비동기·연출)
 - DOTween (연출)
 - 로컬 저장: PlayerPrefs / JSON (서버 연동은 교체 가능 구조)
+
