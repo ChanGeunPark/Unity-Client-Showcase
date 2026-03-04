@@ -127,6 +127,7 @@ public class UIManager : MonoBehaviour
         if (go == null)
             return null;
 
+        go.transform.SetParent(Root.transform);
         var popup = Util.GetOrAddComponent<T>(go);
         PushPopupAndNotify(popup, go, useSetCanvas);
         return popup;

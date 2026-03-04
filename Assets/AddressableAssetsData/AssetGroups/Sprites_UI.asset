@@ -45,6 +45,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1be6a0e7be65d4fd8836bd64da69c8d1
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/HUD/Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1e4e281c9638743589d3e22aeb70beec
     m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/@card/Anxiety_card.png
     m_ReadOnly: 0
@@ -122,6 +127,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 859a51c7d709b46efa746d228755c05e
     m_Address: Assets/@Assets/Sprites/Sprite_UI/Gacha/effect1_light1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 85e8ab52ca7e445b985a124e6a58d30f
+    m_Address: Assets/@Assets/Sprites/Sprite_UI/HUD/SlotEmpty.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

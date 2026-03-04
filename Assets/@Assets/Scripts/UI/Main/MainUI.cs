@@ -7,9 +7,10 @@ public class MainUI : BaseUI
     enum Buttons
     {
         InventoryButton,
-        AddBoltButton,
+        CatLibraryButton,
         GoldButton,
         DiamondButton,
+        GachaButton,
     }
 
     enum Texts
@@ -47,7 +48,7 @@ public class MainUI : BaseUI
     private void Start()
     {
         AddButtonListener(Buttons.InventoryButton, OpenInventoryPopup);
-        AddButtonListener(Buttons.AddBoltButton, () =>
+        AddButtonListener(Buttons.CatLibraryButton, () =>
         {
             UIManager.Instance.ShowPopupUI<CatLibraryPopupUI>();
         });
@@ -58,6 +59,20 @@ public class MainUI : BaseUI
         AddButtonListener(Buttons.DiamondButton, () =>
         {
             BackendManager.Instance.UpdateCurrencyTable(CurrencyType.Diamond, 1, true);
+        });
+
+        AddButtonListener(Buttons.GachaButton, () =>
+        {
+            var result = BackendManager.Instance.DoCharacterGacha(5);
+            if (result.IsSuccess)
+            {
+                GachaPopupUI gachaPopupUI = UIManager.Instance.ShowPopupUI<GachaPopupUI>();
+                gachaPopupUI.Initialize(result.Data);
+            }
+            else
+            {
+                Debug.Log(result.Message);
+            }
         });
 
 

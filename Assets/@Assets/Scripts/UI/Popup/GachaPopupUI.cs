@@ -428,7 +428,10 @@ public class GachaPopupUI : BasePopupUI
             .DOFade(1f, _config.whiteOverlayFadeDuration)
             .SetDelay(_config.whiteOverlayFadeDelay)
             .SetEase(Ease.Linear)
-            .SetAutoKill(true);
+            .SetAutoKill(true).OnComplete(() =>
+            {
+                ClosePopupWithAnimation(this, null);
+            });
     }
 
     #endregion

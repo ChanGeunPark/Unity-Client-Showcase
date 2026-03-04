@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GachaCtrl
 {
-
     public BackendResponse<CharacterTable> GetCharacterTable()
     {
         LoadDataResult<CharacterTable> localDataResult = LocalDataManager.Instance.LoadDataMsgPack<CharacterTable>("CharacterTable");
@@ -15,7 +14,6 @@ public class GachaCtrl
         LocalDataManager.Instance.SaveDataMsgPack(characterTable, "CharacterTable");
         return new BackendResponse<CharacterTable>(true, 200, null, null, characterTable);
     }
-
 
     public BackendResponse<List<CharacterChart>> DoCharacterGacha(int gachaCount)
     {

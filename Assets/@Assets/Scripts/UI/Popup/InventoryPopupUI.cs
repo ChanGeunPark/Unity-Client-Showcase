@@ -63,12 +63,14 @@ public class InventoryPopupUI : BasePopupUI
         }
 
         int materialItemCount = GameDataManager.Instance.Store.InventoryTable.MaterialItems.Count;
-        int maxMaterialItemCount = GameDataManager.Instance.Store.InventoryTable.MaxMaterialItemCount;
+        int minSlotCount = 20; // 빈 슬롯 미리 보여주는 용도
 
-
-        for (int i = 0; i < maxMaterialItemCount - materialItemCount; i++)
+        if (materialItemCount < minSlotCount)
         {
-            var inventoryItemHolder = UIManager.Instance.MakeItemHolder<InventoryItemHolder>(GetObject(Objects.InventoryItemList).transform);
+            for (int i = 0; i < minSlotCount - materialItemCount; i++)
+            {
+                var inventoryItemHolder = UIManager.Instance.MakeItemHolder<InventoryItemHolder>(GetObject(Objects.InventoryItemList).transform);
+            }
         }
     }
 
