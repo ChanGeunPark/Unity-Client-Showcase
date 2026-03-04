@@ -55,7 +55,7 @@ public partial class BackendManager : MonoBehaviour
 
         switch (chartName)
         {
-            case "CharacterChart":
+            case BConst.Chart.Character:
                 BackendResponse<List<CharacterChart>> characterChartRes = _backendChart.LoadCharacterChart(localData.Data);
                 return new BackendResponse<object>
                 {
@@ -65,7 +65,7 @@ public partial class BackendManager : MonoBehaviour
                     StatusCode = characterChartRes.StatusCode,
                     MessageRaw = characterChartRes.MessageRaw
                 };
-            case "CharacterGachaProbability":
+            case BConst.Chart.CharacterGachaProbability:
                 BackendResponse<Dictionary<string, float>> gachaProbRes = _backendChart.LoadCharacterGachaProbability(localData.Data);
                 return new BackendResponse<object>
                 {

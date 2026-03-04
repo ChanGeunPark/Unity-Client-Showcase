@@ -6,12 +6,12 @@ public class GachaCtrl
 {
     public BackendResponse<CharacterTable> GetCharacterTable()
     {
-        LoadDataResult<CharacterTable> localDataResult = LocalDataManager.Instance.LoadDataMsgPack<CharacterTable>("CharacterTable");
+        LoadDataResult<CharacterTable> localDataResult = LocalDataManager.Instance.LoadDataMsgPack<CharacterTable>(BConst.Table.CharacterTable);
         if (localDataResult.IsSuccess)
             return new BackendResponse<CharacterTable>(true, 200, null, null, localDataResult.Data);
 
         CharacterTable characterTable = CharacterTable.CreateDefault();
-        LocalDataManager.Instance.SaveDataMsgPack(characterTable, "CharacterTable");
+        LocalDataManager.Instance.SaveDataMsgPack(characterTable, BConst.Table.CharacterTable);
         return new BackendResponse<CharacterTable>(true, 200, null, null, characterTable);
     }
 
@@ -70,7 +70,7 @@ public class GachaCtrl
                     Level = 1
                 });
             }
-            LocalDataManager.Instance.SaveDataMsgPack(table, "CharacterTable");
+            LocalDataManager.Instance.SaveDataMsgPack(table, BConst.Table.CharacterTable);
             GameDataManager.Instance.Store.CharacterTable = table;
 
             return new BackendResponse<List<CharacterChart>>(true, data: result);

@@ -16,7 +16,9 @@ public class LocalDataManager : MonoBehaviour
     public string PersistentDataPathParent { get; set; }
     private static readonly Dictionary<string, string> _fileNameMap = new Dictionary<string, string>
     {
-        { "InventoryTable", "InventoryTable.mpk" }
+        { BConst.Table.InventoryTable, "InventoryTable.mpk" },
+        { BConst.Table.CharacterTable, "CharacterTable.mpk" },
+        { BConst.Table.CurrencyTable, "CurrencyTable.mpk" }
     };
 
 

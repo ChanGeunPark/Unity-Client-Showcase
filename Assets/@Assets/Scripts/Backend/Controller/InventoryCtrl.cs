@@ -6,13 +6,13 @@ public class InventoryCtrl
 {
     public BackendResponse<InventoryTable> GetInventoryTable()
     {
-        LoadDataResult<InventoryTable> localDataResult = LocalDataManager.Instance.LoadDataMsgPack<InventoryTable>("InventoryTable");
+        LoadDataResult<InventoryTable> localDataResult = LocalDataManager.Instance.LoadDataMsgPack<InventoryTable>(BConst.Table.InventoryTable);
         if (localDataResult.IsSuccess)
             return new BackendResponse<InventoryTable>(true, 200, null, null, localDataResult.Data);
 
         // 최초 실행 등 파일 없음 → 기본 데이터 생성 후 저장
         InventoryTable defaultTable = InventoryTable.CreateDefault();
-        LocalDataManager.Instance.SaveDataMsgPack(defaultTable, "InventoryTable");
+        LocalDataManager.Instance.SaveDataMsgPack(defaultTable, BConst.Table.InventoryTable);
         return new BackendResponse<InventoryTable>(true, 200, null, null, defaultTable);
     }
 
@@ -39,7 +39,7 @@ public class InventoryCtrl
                 return new BackendResponse<InventoryTable>(false, null, "Max material item count");
         }
 
-        LocalDataManager.Instance.SaveDataMsgPack(response.Data, "InventoryTable");
+        LocalDataManager.Instance.SaveDataMsgPack(response.Data, BConst.Table.InventoryTable);
         GameDataManager.Instance.Store.InventoryTable = response.Data;
         return new BackendResponse<InventoryTable>(true, 200, null, null, response.Data);
     }

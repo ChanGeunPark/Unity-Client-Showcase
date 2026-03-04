@@ -11,11 +11,11 @@ public partial class BackendChart
         try
         {
             // Resources/Charts 폴더에서 CSV 로드 (확장자 없이 에셋 이름만 사용)
-            TextAsset csvFile = Resources.Load<TextAsset>($"Charts/{chartName}");
+            TextAsset csvFile = Resources.Load<TextAsset>(BConst.Chart.PathPrefix + chartName);
 
             if (csvFile == null)
             {
-                Debug.LogError($"[BackendChart] CSV file not found: Charts/{chartName} (Resources/Charts/ 폴더에 있어야 하며, Addressable 체크 해제 필요)");
+                Debug.LogError($"[BackendChart] CSV file not found: {BConst.Chart.PathPrefix}{chartName} (Resources/Charts/ 폴더에 있어야 하며, Addressable 체크 해제 필요)");
                 return null;
             }
 

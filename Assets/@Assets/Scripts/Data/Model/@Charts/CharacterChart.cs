@@ -15,8 +15,8 @@ public class CharacterChart
     {
         try
         {
-            CharacterId = CustomJsonUtil.GetString(json, "Name");
-            Grade = CustomJsonUtil.GetEnum(json, "Grade", CharacterGrade.None);
+            CharacterId = CustomJsonUtil.GetString(json, BConst.ChartColumn.CharacterName);
+            Grade = CustomJsonUtil.GetEnum(json, BConst.ChartColumn.CharacterGrade, CharacterGrade.None);
         }
         catch (Exception e)
         {

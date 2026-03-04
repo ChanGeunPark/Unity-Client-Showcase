@@ -106,13 +106,13 @@ public class GameDataStore
             ResetGameData();
         }
 
-        BackendResponse<object> characterChartRes = BackendManager.Instance.GetChartContents("CharacterChart");
+        BackendResponse<object> characterChartRes = BackendManager.Instance.GetChartContents(BConst.Chart.Character);
         if (characterChartRes != null && characterChartRes.IsSuccess && characterChartRes.Data != null)
         {
             CharacterChart = characterChartRes.Data as List<CharacterChart>;
         }
 
-        BackendResponse<object> gachaProbRes = BackendManager.Instance.GetChartContents("CharacterGachaProbability");
+        BackendResponse<object> gachaProbRes = BackendManager.Instance.GetChartContents(BConst.Chart.CharacterGachaProbability);
         if (gachaProbRes != null && gachaProbRes.IsSuccess && gachaProbRes.Data != null)
         {
             GachaProbabilityData = gachaProbRes.Data as Dictionary<string, float>;

@@ -4,13 +4,13 @@ public class CurrencyCtrl
 {
     public BackendResponse<CurrencyTable> GetCurrencyTable()
     {
-        LoadDataResult<CurrencyTable> localDataResult = LocalDataManager.Instance.LoadDataMsgPack<CurrencyTable>("CurrencyTable");
+        LoadDataResult<CurrencyTable> localDataResult = LocalDataManager.Instance.LoadDataMsgPack<CurrencyTable>(BConst.Table.CurrencyTable);
         if (localDataResult.IsSuccess)
             return new BackendResponse<CurrencyTable>(true, 200, null, null, localDataResult.Data);
 
         // 최초 실행 등 파일 없음 → 기본 데이터 생성 후 저장
         CurrencyTable defaultTable = CurrencyTable.CreateDefault();
-        LocalDataManager.Instance.SaveDataMsgPack(defaultTable, "CurrencyTable");
+        LocalDataManager.Instance.SaveDataMsgPack(defaultTable, BConst.Table.CurrencyTable);
         return new BackendResponse<CurrencyTable>(true, 200, null, null, defaultTable);
     }
 
@@ -33,7 +33,7 @@ public class CurrencyCtrl
                 break;
         }
 
-        LocalDataManager.Instance.SaveDataMsgPack(response.Data, "CurrencyTable");
+        LocalDataManager.Instance.SaveDataMsgPack(response.Data, BConst.Table.CurrencyTable);
         GameDataManager.Instance.Store.CurrencyTable = response.Data;
 
         return new BackendResponse<CurrencyTable>(true, 200, null, null, response.Data);

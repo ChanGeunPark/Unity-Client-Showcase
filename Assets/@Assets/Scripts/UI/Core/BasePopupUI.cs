@@ -23,11 +23,7 @@ public class BasePopupUI : BaseUI
     public virtual void Close()
     {
         UIManager.Instance.ClosePopupUI(this);
-
-        if (OnClosedPopup != null)
-        {
-            OnClosedPopup?.Invoke();
-        }
+        OnClosedPopup?.Invoke();
     }
 
     public void CloseDelay(float delayTime = 0)

@@ -22,14 +22,14 @@ public partial class BackendChart
             }
 
             result.IsSuccess = true;
-            result.StatusCode = 200;
+            result.StatusCode = BConst.ErrorCode.Ok;
             result.Data = characterChartList;
         }
         catch (Exception e)
         {
             result.IsSuccess = false;
             result.MessageRaw = e.Message;
-            result.StatusCode = 400;
+            result.StatusCode = BConst.ErrorCode.BadRequest;
             result.Message = "Parsing Error";
         }
 
@@ -47,10 +47,10 @@ public partial class BackendChart
             for (int i = 0; i < json.Count; i++)
             {
                 JsonData row = json[i];
-                string characterId = row["name"]?.ToString() ?? "";
+                string characterId = row[BConst.ChartColumn.GachaProbabilityId]?.ToString() ?? "";
                 if (string.IsNullOrEmpty(characterId)) continue;
 
-                string probStr = row["percent"]?.ToString();
+                string probStr = row[BConst.ChartColumn.GachaProbabilityPercent]?.ToString();
                 if (string.IsNullOrEmpty(probStr)) continue;
                 if (!float.TryParse(probStr, out float percent)) continue;
 
@@ -58,14 +58,14 @@ public partial class BackendChart
             }
 
             result.IsSuccess = true;
-            result.StatusCode = 200;
+            result.StatusCode = BConst.ErrorCode.Ok;
             result.Data = dict;
         }
         catch (Exception e)
         {
             result.IsSuccess = false;
             result.MessageRaw = e.Message;
-            result.StatusCode = 400;
+            result.StatusCode = BConst.ErrorCode.BadRequest;
             result.Message = "Parsing Error";
         }
 
