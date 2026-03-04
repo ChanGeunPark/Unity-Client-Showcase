@@ -101,13 +101,16 @@
 ## 5. 연출 / 데모
 
 - **가챠 인트로 연출**: `GachaPopupUI` + `GachaIntroHolder`
-  - `GachaPopupUI`: 가챠 시작 → 카드 선택 → 별똥별 → 포탈까지 전체 플로우를 관리합니다.
+  - `GachaPopupUI`: 가챠 시작 → 카드 선택 → 별똥별 → 포탈까지
   - `GachaIntroHolder`: 카드 한 장의 연출(연기, 카드 플립, 레인보우 효과, 스프레드, 티어별 파티클)을 담당합니다.
   - 두 컴포넌트 모두 `GachaPopupConfig`, `GachaCardRevealConfig` ScriptableObject를 통해 타이밍·이펙트 강도·티어별 설정을 주입받도록 설계했습니다.
   - 기획이 요청하는 “강한/약한 연출”, “레전드만 특별하게” 같은 요구사항을 코드 수정 없이 Config 에셋 값만 조정해서 반영할 수 있습니다.
+- **캐릭터 도감**: [`CatLibraryPopupUI`](Assets/@Assets/Scripts/UI/Popup/CatLibraryPopupUI.cs) — CharacterChart·CharacterTable(Store) 기반으로 보유 캐릭터를 우선 정렬해 그리드(5열)에 표시. 대각선 순서 지연(`DiagonalDelayStep`)으로 등장 연출.
 - **인벤토리 / 기타 UI**: `MainUI`, `InventoryPopupUI`, `CharacterHolder` 등은 공통 `BaseUI`, `BasePopupUI`를 상속받아, 등장/퇴장 애니메이션과 EventBus 기반 데이터 반영 패턴을 공유합니다.
 
-TODO: GIF추가.
+![가챠 인트로 / 데모 연출](docs/GachaShowcase.gif)
+
+![캐릭터 도감](docs/CatLibrary.gif)
 
 ## 사용 스택
 
