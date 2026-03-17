@@ -8,8 +8,6 @@ using UnityEngine;
 /// </summary>
 public class GameDataStore
 {
-
-
     ///////////////////////////////////////// [Chart] /////////////////////////////////////////
     private List<CharacterChart> _characterChart;
     public List<CharacterChart> CharacterChart

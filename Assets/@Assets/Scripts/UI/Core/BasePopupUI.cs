@@ -28,11 +28,14 @@ public class BasePopupUI : BaseUI
 
     public void CloseDelay(float delayTime = 0)
     {
-        DOTween.Sequence().AppendInterval(delayTime).AppendCallback(() =>
-        {
-            UIManager.Instance.ClosePopupUI(this);
-            if (OnClosedPopup != null) OnClosedPopup?.Invoke();
-        });
+        DOTween.Sequence()
+            .AppendInterval(delayTime)
+            .AppendCallback(() =>
+            {
+                UIManager.Instance.ClosePopupUI(this);
+                if (OnClosedPopup != null) OnClosedPopup?.Invoke();
+            })
+            .SetLink(gameObject);
     }
 
 
@@ -62,7 +65,10 @@ public class BasePopupUI : BaseUI
             obj.transform.localScale = Vector3.zero;
 
             // 스케일을 (1, 1, 1)로 애니메이션
-            obj.transform.DOScale(scale, duration).SetEase(Ease.OutBack).SetUpdate(true);
+            obj.transform.DOScale(scale, duration)
+                .SetEase(Ease.OutBack)
+                .SetUpdate(true)
+                .SetLink(obj);
         }
     }
 
@@ -72,7 +78,10 @@ public class BasePopupUI : BaseUI
         var obj = GetObject(idx);
         if (obj != null)
         {
-            obj.transform.DOScale(Vector3.zero, duration).SetEase(Ease.InBack).SetUpdate(true);
+            obj.transform.DOScale(Vector3.zero, duration)
+                .SetEase(Ease.InBack)
+                .SetUpdate(true)
+                .SetLink(obj);
         }
     }
 
@@ -85,7 +94,9 @@ public class BasePopupUI : BaseUI
             return;
         }
 
-        _canvasGroup.DOFade(0, duration).SetUpdate(true);
+        _canvasGroup.DOFade(0, duration)
+            .SetUpdate(true)
+            .SetLink(_canvasGroup.gameObject);
     }
 
     protected void FadeInPopup(MonoBehaviour currentObject, float duration = 0.3f)
@@ -97,7 +108,9 @@ public class BasePopupUI : BaseUI
         }
 
         _canvasGroup.alpha = 0;
-        _canvasGroup.DOFade(1, duration).SetUpdate(true);
+        _canvasGroup.DOFade(1, duration)
+            .SetUpdate(true)
+            .SetLink(_canvasGroup.gameObject);
     }
 
     protected void ClosePopupWithAnimation(MonoBehaviour currentObject, object idx, float duration = 0.3f, Action onComplete = null)
@@ -114,7 +127,9 @@ public class BasePopupUI : BaseUI
             .AppendCallback(() =>
             {
                 onComplete?.Invoke();
-            }).SetUpdate(true);
+            })
+            .SetUpdate(true)
+            .SetLink(gameObject);
     }
 
     protected void ShowPopupWithAnimation(MonoBehaviour currentObject, object idx, float duration = 0.3f)

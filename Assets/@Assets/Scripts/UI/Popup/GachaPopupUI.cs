@@ -120,6 +120,7 @@ public class GachaPopupUI : BasePopupUI
 
         InitAnimation();
         DOTween.Sequence()
+            .SetLink(gameObject)
             .AppendInterval(_config.introDelay)
             .AppendCallback(OnIntroDelayComplete);
     }
@@ -218,15 +219,20 @@ public class GachaPopupUI : BasePopupUI
     {
         if (_config == null) return;
         GetObject(Objects.MainGroup).transform
-            .DOScale(1f, _config.initDuration).From(_config.mainGroupScaleFrom).SetEase(Ease.OutQuart).SetAutoKill(true);
+            .DOScale(1f, _config.initDuration).From(_config.mainGroupScaleFrom).SetEase(Ease.OutQuart).SetAutoKill(true)
+            .SetLink(GetObject(Objects.MainGroup));
         GetObject(Objects.Grass).transform
-            .DOScale(1f, _config.initDuration).From(_config.grassScaleFrom).SetEase(Ease.OutQuart).SetAutoKill(true);
+            .DOScale(1f, _config.initDuration).From(_config.grassScaleFrom).SetEase(Ease.OutQuart).SetAutoKill(true)
+            .SetLink(GetObject(Objects.Grass));
         GetObject(Objects.FrontStoneCats).transform
-            .DOScale(_config.frontCatsScaleTo, _config.initDuration).From(_config.frontCatsScaleFrom).SetRelative(true).SetEase(Ease.OutQuart).SetAutoKill(true);
+            .DOScale(_config.frontCatsScaleTo, _config.initDuration).From(_config.frontCatsScaleFrom).SetRelative(true).SetEase(Ease.OutQuart).SetAutoKill(true)
+            .SetLink(GetObject(Objects.FrontStoneCats));
         GetObject(Objects.LeftLeaf).transform
-            .DOScale(1f, _config.initDuration).From(_config.leafScaleFrom).SetRelative(true).SetEase(Ease.OutQuart).SetAutoKill(true);
+            .DOScale(1f, _config.initDuration).From(_config.leafScaleFrom).SetRelative(true).SetEase(Ease.OutQuart).SetAutoKill(true)
+            .SetLink(GetObject(Objects.LeftLeaf));
         GetObject(Objects.RightLeaf).transform
-            .DOScale(1f, _config.initDuration).From(_config.leafScaleFrom).SetRelative(true).SetEase(Ease.OutQuart).SetAutoKill(true);
+            .DOScale(1f, _config.initDuration).From(_config.leafScaleFrom).SetRelative(true).SetEase(Ease.OutQuart).SetAutoKill(true)
+            .SetLink(GetObject(Objects.RightLeaf));
 
         if (_catFaceBlinkRoutine == null)
             _catFaceBlinkRoutine = StartCoroutine(CatFaceBlinkRoutine());
@@ -303,6 +309,7 @@ public class GachaPopupUI : BasePopupUI
                     .SetEase(Ease.InOutQuad)
                     .SetAutoKill(true)
                     .SetDelay(delay)
+                    .SetLink(item.gameObject)
                     .OnComplete(() => item.gameObject.SetActive(false));
             }
         }
@@ -313,7 +320,9 @@ public class GachaPopupUI : BasePopupUI
         _smokeAnimation.gameObject.SetActive(true);
         DelayAction(() =>
         {
-            GetImage(Images.Step1Background).DOFade(0, _config.step1BackgroundFadeDuration).SetAutoKill(true);
+            GetImage(Images.Step1Background).DOFade(0, _config.step1BackgroundFadeDuration)
+                .SetAutoKill(true)
+                .SetLink(GetImage(Images.Step1Background).gameObject);
             GachaAnimation();
         }, _config.gachaAnimationStartDelay - _config.smokeShowDelay);
     }
@@ -341,7 +350,11 @@ public class GachaPopupUI : BasePopupUI
         _config.ApplyShootingStarParticleByTier(starsParticle, _tier);
 
         GetImage(Images.ShootingStarImage).GetComponent<DOTweenAnimation>().DOPlayForward();
-        GetObject(Objects.ShootingStarTail).transform.DOScaleY(0, _config.shootingStarTailScaleDuration).SetDelay(_config.shootingStarTailScaleDelay).SetEase(Ease.OutQuart).SetAutoKill(true);
+        GetObject(Objects.ShootingStarTail).transform.DOScaleY(0, _config.shootingStarTailScaleDuration)
+            .SetDelay(_config.shootingStarTailScaleDelay)
+            .SetEase(Ease.OutQuart)
+            .SetAutoKill(true)
+            .SetLink(GetObject(Objects.ShootingStarTail));
 
         var starTargetPosition = GetObject(Objects.Bell).transform.position;
         starTargetPosition.y -= 100f;
@@ -349,6 +362,7 @@ public class GachaPopupUI : BasePopupUI
         GetObject(Objects.ShootingStar).transform
             .DOMove(starTargetPosition, _config.shootingStarMoveDuration)
             .SetEase(Ease.OutQuad)
+            .SetLink(GetObject(Objects.ShootingStar))
             .OnComplete(OnShootingStarReachedBell);
     }
 
@@ -373,7 +387,7 @@ public class GachaPopupUI : BasePopupUI
     private void PlayBellAndShakeAnimation()
     {
         var bell = GetObject(Objects.Bell);
-        var sequence = DOTween.Sequence().SetTarget(bell);
+        var sequence = DOTween.Sequence().SetTarget(bell).SetLink(bell);
         sequence.Append(bell.transform.DOLocalRotate(new Vector3(0, 0, -_config.bellRotationAngle), 1f).SetEase(Ease.InOutQuad));
         sequence.Append(bell.transform.DOLocalRotate(new Vector3(0, 0, _config.bellRotationAngle), 1f).SetEase(Ease.InOutQuad));
         sequence.SetLoops(-1, LoopType.Yoyo).SetAutoKill(true);
@@ -381,7 +395,8 @@ public class GachaPopupUI : BasePopupUI
         GetObject(Objects.MainGroup).transform
             .DOShakePosition(_config.mainGroupShakeDuration, _config.mainGroupShakeStrength, 23, 90, true, true)
             .SetEase(Ease.InQuad)
-            .SetAutoKill(true);
+            .SetAutoKill(true)
+            .SetLink(GetObject(Objects.MainGroup));
     }
 
     #endregion
@@ -396,7 +411,8 @@ public class GachaPopupUI : BasePopupUI
             .DOScale(1f, _config.portalScaleDuration)
             .SetEase(Ease.OutBack)
             .From(0)
-            .SetAutoKill(true);
+            .SetAutoKill(true)
+            .SetLink(GetObject(Objects.Portal));
 
         DelayAction(PlayAfterPortalSequence, _config.afterPortalDelay);
     }
@@ -411,24 +427,48 @@ public class GachaPopupUI : BasePopupUI
             .DOScale(1f, _config.afterPortalScaleDuration)
             .SetEase(Ease.InOutQuart)
             .From(0)
-            .SetAutoKill(true);
+            .SetAutoKill(true)
+            .SetLink(_afterPortalGroup);
 
         var starsParticle = GetObject(Objects.AfterPortalEnergySpread).GetComponent<ParticleImage>();
         _config.ApplyAfterPortalParticleByTier(starsParticle, _tier);
 
-        GetObject(Objects.MainGroup).transform.DOScale(_config.mainGroupScaleEnd, _config.portalRiseDuration).SetEase(Ease.Linear).SetAutoKill(true);
-        GetObject(Objects.MainGroup).transform.DOMoveY(_config.mainGroupMoveY, _config.portalRiseDuration).SetRelative(true).SetEase(Ease.Linear).SetAutoKill(true);
-        GetObject(Objects.Grass).transform.DOScale(_config.grassScaleEnd, _config.portalRiseDuration).SetEase(Ease.Linear).SetAutoKill(true);
-        GetObject(Objects.Grass).transform.DOMoveY(_config.grassMoveY, _config.portalRiseDuration).SetRelative(true).SetEase(Ease.Linear).SetAutoKill(true);
-        GetObject(Objects.LeftLeaf).transform.DOLocalMove(_config.leftLeafMoveOffset, _config.portalRiseDuration).SetRelative(true).SetEase(Ease.OutQuart).SetAutoKill(true);
-        GetObject(Objects.RightLeaf).transform.DOLocalMove(_config.rightLeafMoveOffset, _config.portalRiseDuration).SetRelative(true).SetEase(Ease.OutQuart).SetAutoKill(true);
+        GetObject(Objects.MainGroup).transform.DOScale(_config.mainGroupScaleEnd, _config.portalRiseDuration)
+            .SetEase(Ease.Linear)
+            .SetAutoKill(true)
+            .SetLink(GetObject(Objects.MainGroup));
+        GetObject(Objects.MainGroup).transform.DOMoveY(_config.mainGroupMoveY, _config.portalRiseDuration)
+            .SetRelative(true)
+            .SetEase(Ease.Linear)
+            .SetAutoKill(true)
+            .SetLink(GetObject(Objects.MainGroup));
+        GetObject(Objects.Grass).transform.DOScale(_config.grassScaleEnd, _config.portalRiseDuration)
+            .SetEase(Ease.Linear)
+            .SetAutoKill(true)
+            .SetLink(GetObject(Objects.Grass));
+        GetObject(Objects.Grass).transform.DOMoveY(_config.grassMoveY, _config.portalRiseDuration)
+            .SetRelative(true)
+            .SetEase(Ease.Linear)
+            .SetAutoKill(true)
+            .SetLink(GetObject(Objects.Grass));
+        GetObject(Objects.LeftLeaf).transform.DOLocalMove(_config.leftLeafMoveOffset, _config.portalRiseDuration)
+            .SetRelative(true)
+            .SetEase(Ease.OutQuart)
+            .SetAutoKill(true)
+            .SetLink(GetObject(Objects.LeftLeaf));
+        GetObject(Objects.RightLeaf).transform.DOLocalMove(_config.rightLeafMoveOffset, _config.portalRiseDuration)
+            .SetRelative(true)
+            .SetEase(Ease.OutQuart)
+            .SetAutoKill(true)
+            .SetLink(GetObject(Objects.RightLeaf));
 
         GetImage(Images.WhiteOverlay).gameObject.SetActive(true);
         GetImage(Images.WhiteOverlay)
             .DOFade(1f, _config.whiteOverlayFadeDuration)
             .SetDelay(_config.whiteOverlayFadeDelay)
             .SetEase(Ease.Linear)
-            .SetAutoKill(true).OnComplete(() =>
+            .SetAutoKill(true)
+            .SetLink(GetImage(Images.WhiteOverlay).gameObject).OnComplete(() =>
             {
                 ClosePopupWithAnimation(this, null);
             });

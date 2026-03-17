@@ -131,17 +131,20 @@ public class CharacterHolder : BaseUI
         var rotateTween = transform.DORotate(ShowAnimationRotateTo, ShowAnimationRotateDuration)
             .SetEase(Ease.OutBack)
             .From(ShowAnimationRotateFrom)
-            .SetTarget(transform);
+            .SetTarget(transform)
+            .SetLink(gameObject);
         var scaleTween = transform.DOScale(ShowAnimationScaleTo, ShowAnimationScaleDuration)
             .SetEase(Ease.OutBack)
             .From(ShowAnimationScaleFrom)
-            .SetTarget(transform);
+            .SetTarget(transform)
+            .SetLink(gameObject);
 
         var sequence = DOTween.Sequence()
             .AppendInterval(delay)
             .Append(rotateTween)
             .Join(scaleTween)
             .SetId(_animationId)
-            .SetTarget(transform);
+            .SetTarget(transform)
+            .SetLink(gameObject);
     }
 }
